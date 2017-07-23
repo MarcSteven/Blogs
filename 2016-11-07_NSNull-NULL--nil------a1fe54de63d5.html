@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>NSNull,NULL 和nil的爱恨交错</title><meta name="description" content="作为一个开发者，我们总会遇到NSNull，NULL，nil，对于它有时候我们真是又爱又恨，因为在某些安全性的语言中遇到空指针则会直接崩溃，看到程序崩溃的场面，谁又能安然地欣喜呢？"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">NSNull,NULL 和nil的爱恨交错</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+作为一个开发者，我们总会遇到NSNull，NULL，nil，对于它有时候我们真是又爱又恨，因为在某些安全性的语言中遇到空指针则会直接崩溃，看到程序崩溃的场面，谁又能安然地欣喜呢？
+</section>
+<section data-field="body" class="e-content">
+<section name="0450" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="0267" id="0267" class="graf graf--h3 graf--leading graf--title">NSNull,NULL 和nil的爱恨交错</h3><p name="7dea" id="7dea" class="graf graf--p graf-after--h3">作为一个开发者，我们总会遇到NSNull，NULL，nil，对于它有时候我们真是又爱又恨，因为在某些安全性的语言中遇到空指针则会直接崩溃，看到程序崩溃的场面，谁又能安然地欣喜呢？</p><p name="2fc9" id="2fc9" class="graf graf--p graf-after--p">今天我是以一个iOS的程序员来陈述这三个常见的观念的，如有错误还请指正。</p><p name="4c61" id="4c61" class="graf graf--p graf--hasDropCapModel graf--hasDropCap graf-after--p"><span class="graf-dropCap">1</span>，NSNull：在iOS中，NSNull则是NSObject的base class。在此有人或许会有疑问了，还是不了解，因为你用一个概念解释了一个对象，但是在这个概念中却又充满了新的知识，这就是官方的术语。NSObject是大多数Objective-C等级的根类，通过NSObject继承一个基本的接口给运行时系统，并且赋予了Objective-C对象去执行的能力。这就是NSObject，好伟大的root class。下面就是NSObject的层级图，反正你要做的事情都与它有着千丝万缕的关系。</p><figure name="01f2" id="01f2" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 372px; max-height: 306px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 82.3%;"></div><img class="graf-image" data-image-id="1*UGjGVFQvZG55ZFUCRTh0xQ.png" data-width="372" data-height="306" src="https://cdn-images-1.medium.com/max/800/1*UGjGVFQvZG55ZFUCRTh0xQ.png"></div><figcaption class="imageCaption">NSObject的层级关系图</figcaption></figure><p name="60a6" id="60a6" class="graf graf--p graf-after--figure">NSNull到底是什么？它是一个类，用来定义一个用于在集合对象中展示空值的单例对象，在集合对象中是不允许空值的存在，因此一旦遇到则会崩溃。NSNull是用它的核心基础组成的免费架桥，具体的内容可以参考“Toll-Free Bridging”,具体的链接在Develoer Apple官网中，关于OC 的概念中有具体的介绍。</p><p name="4ab8" id="4ab8" class="graf graf--p graf-after--p graf--trailing">2，NULL：它是C、C++等独有的，主要是扩展到定义实现的空指针常量。3，nil：定义了一个空实例的ID，而Nil则是定义了一个空类的ID，这是二者最大的区别。</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/a1fe54de63d5"><time class="dt-published" datetime="2016-11-07T13:22:28.560Z">November 7, 2016</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/nsnull-null-%E5%92%8Cnil%E7%9A%84%E7%88%B1%E6%81%A8%E4%BA%A4%E9%94%99-a1fe54de63d5" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

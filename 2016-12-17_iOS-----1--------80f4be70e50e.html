@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>iOS设计模式(1)-生产者模式</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">iOS设计模式(1)-生产者模式</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="4b84" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="7dcf" id="7dcf" class="graf graf--h3 graf--leading graf--title">iOS中的设计模式</h3><p name="be95" id="be95" class="graf graf--p graf-after--h3">设计模式是什么呢？它是一种策略来解决某些特殊问题。它不是万能的</p><h4 name="0b10" id="0b10" class="graf graf--h4 graf-after--p">对象模板模式</h4><h4 name="554f" id="554f" class="graf graf--h4 graf-after--h4">1，对象模板模式</h4><p name="44fd" id="44fd" class="graf graf--p graf-after--h4">到底什么是对象模板模式呢？对象模板模式就是用一个类或者结构体作为一个数据类型的配置或者一个给定的数据类型的逻辑，当使用模板的时候对象被创建，在初始化的时候对应数据的值被设定，要么通过在模板中默认值的使用要么通过类或结构体的初始化组件去提供值，因此被成为构建器。</p><h4 name="ea2d" id="ea2d" class="graf graf--h4 graf-after--p">福利</h4><p name="46be" id="46be" class="graf graf--p graf-after--h4">分组数据的对象模板模式提供了基础的价值观和操纵它们的逻辑,称为封装。允许一个对象提供一个API封装消费者而隐藏私有API的实现。这有助于防止紧密耦合的组件。</p><h4 name="9a11" id="9a11" class="graf graf--h4 graf-after--p">什么时候用它？</h4><p name="ecc4" id="ecc4" class="graf graf--p graf-after--h4">你可以在所有的场景中使用它但是除了最简单的工程。swift元组是一个有趣的特性，但是他们可以提供一个长期维护问题,只需要一点额外的工作来创建一个简单的类或结构。</p><h4 name="7e9a" id="7e9a" class="graf graf--h4 graf-after--p">何时要消除使用它？</h4><p name="c34f" id="c34f" class="graf graf--p graf-after--h4">使用它没有缺点</p><h4 name="a8c6" id="a8c6" class="graf graf--h4 graf-after--p">注意事项</h4><p name="dece" id="dece" class="graf graf--p graf-after--h4">1，如何确定你准确地实现了这个模式？当你应的更改组件却可以更改的私有实现一个类或结构时。<br> 2，它有任意普遍的陷阱吗？唯一的陷阱便是当你试图用一个类的时候却使用一个结构体作为一个模板，结构体和类有许多共同点，但是当从他们创建的对象被赋值给一个新的变量时，他们行为不同。<br> 3，有相关模式吗？原型模式</p><p name="8560" id="8560" class="graf graf--p graf-after--p">/Users/zhaoxinqiang/Desktop/屏幕快照 2016–12–06 上午9.15.48.png</p><h4 name="cc8c" id="cc8c" class="graf graf--h4 graf-after--p">实现对象模板模式</h4><pre name="50da" id="50da" class="graf graf--pre graf-after--h4">class Goods {<br>    var name:String<br>    var description:String<br>    var price:Double<br>    var stock:Int<br>    init(name:String,description:String,price:Double,stock:Int) {<br>        self.name = name<br>        self.description = description<br>        self.price = price<br>        self.stock = stock<br>    }<br>}<br>var products = [<br>    Product(name: &quot;Kayak&quot;, description: &quot;A boat for one person&quot;,<br>        price: 275, stock: 10),<br>    Product(name: &quot;Lifejacket&quot;, description: &quot;Protective and fashionable&quot;,<br>        price: 48.95, stock: 14),<br>    Product(name: &quot;Soccer Ball&quot;, description: &quot;FIFA-approved size and weight&quot;,<br>        price: 19.5, stock: 32)];<br>func calculateTax(product:Product) -&gt; Double {<br>    return product.price * 0.2;<br>}<br>func calculateStockValue(productsArray:[Product]) -&gt; Double {<br>    return productsArray.reduce(0, {(total, product) -&gt; Double in<br>            return total + (product.price * Double(product.stock))<br>}); }</pre><p name="a897" id="a897" class="graf graf--p graf-after--pre">对象模板模式的调用步骤：</p><figure name="9cb5" id="9cb5" class="graf graf--figure graf-after--p graf--trailing"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 560px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 80%;"></div><img class="graf-image" data-image-id="1*RKI9eTmQBbPPetOQrh1Kbw.png" data-width="1280" data-height="1024" src="https://cdn-images-1.medium.com/max/800/1*RKI9eTmQBbPPetOQrh1Kbw.png"></div></figure></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/ios" class="p-tag">iOS</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/80f4be70e50e"><time class="dt-published" datetime="2016-12-17T03:16:07.516Z">December 17, 2016</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/ios%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1-%E7%94%9F%E4%BA%A7%E8%80%85%E6%A8%A1%E5%BC%8F-80f4be70e50e" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

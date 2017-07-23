@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>GCD介绍</title><meta name="description" content="并发："><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">GCD介绍</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+并发：
+</section>
+<section data-field="body" class="e-content">
+<section name="0882" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="6cf5" id="6cf5" class="graf graf--h3 graf--leading graf--title">GCD介绍</h3><p name="5659" id="5659" class="graf graf--p graf-after--h3">并发：</p><p name="9cea" id="9cea" class="graf graf--p graf-after--p">1，同时运行多个任务</p><p name="3b93" id="3b93" class="graf graf--p graf-after--p">2，为什么使用并发：为了用户的响应，一个通常的并发解决的问题便是一个表视图的图像（将不能适当地滚动）当你的App正在下载和传输这些图像的时候，这是一个缓慢的非UI的任务-可能在任何地方运行的，这就意味着同时发生</p><p name="f93d" id="f93d" class="graf graf--p graf-after--p">3，如何使用并发？</p><p name="92c9" id="92c9" class="graf graf--p graf-after--p">构建你的App一些任务可以同时运行，修改同一资源的任务不能同时运行，除非这些资源是线程安全的。存储不同资源的任务或者仅仅是读值能同时运行。使用GCD或者Operation来让告诉系统什么是什么，它管理一切资源。</p><p name="6b40" id="6b40" class="graf graf--p graf-after--p">4，GCD 或者Operation</p><p name="9a84" id="9a84" class="graf graf--p graf-after--p">GCD是十分容易去使用对于一些简单的工作，Operation则使它更加容易去做复杂的工作。简单VS复杂通常意味着你需要在任务之间的交互数量，你想检测这些执行有多么紧密。Operation是对象和包含数据和函数，而GCD则和函数一起工作。</p><p name="321b" id="321b" class="graf graf--p graf-after--p">5，任务执行的地方-线程</p><p name="55a4" id="55a4" class="graf graf--p graf-after--p">UI运行在主线程，系统对于它自己的任务则会产生其他线程。你的App能使用这些活着创建它自己的。你能直接创建线程和管理线程，但是没系统的加载和硬件的知识，你的任务或许产生一个线程递增-减缓或者甚至使你的App崩溃来替代你快速响应。使用GCD或者Operation来创建任务，让系统管理这些线程。</p><p name="5189" id="5189" class="graf graf--p graf-after--p">GCD准许真正的派发和操作让你和队列一起工作来替代直接管理线程。你创建了工作单元，任务或者操作，让他们远离主线程，在派发队列或者操作队列中。系统指出了创建了多少个线程。如果你的App产生了更多的任务，则系统将会产生更多的线程，你不需要担心这些问题。你工作在比线程更高级别的等级上。你的App能产生太多的队列，能产生一个线程递增，尝试用系统的队列去代替生成你自己的。</p><p name="0025" id="0025" class="graf graf--p graf-after--p">你能分群相关的任务到派发群或者操作队列，让你系统管理所有需要完成任务群的线程数量。</p><p name="d870" id="d870" class="graf graf--p graf-after--p">GCD 和操作序列使它容易在其他线程上异步地去运行缓慢的任务。</p><p name="fae9" id="fae9" class="graf graf--p graf-after--p">一些API很自然的做了这些事情。在URLSession和Cloudkit中的许多方法都自己启动在一个独立的线程中，立刻返回控制到主线程，然后当它们被完成的时候运行你的完成句柄。这就意味着你所有的任务完成后，因此你能做一些事情。你经常需要用同步任务去结合一个异步函数（在一个派发群中带的同步任务），但是你必须保证，群和队列需要知道-当每个任务真正完成后，这些信息不能从异步函数中自然而然地得到。</p><p name="e75f" id="e75f" class="graf graf--p graf-after--p">使用它们主要在于你想任务如何和主队列结合/彼此结合，是否交流需要特定的线程安全。并行程序是危险的。你很容易调入难以调试的问题中，因为它们并非每次都发生，因为并行任务每次不在同样的顺序同样的间隔。</p><p name="479e" id="479e" class="graf graf--p graf-after--p">三个可能的问题</p><p name="fb6d" id="fb6d" class="graf graf--p graf-after--p">竞争条件：当二个线程视图去存储相同的值。结果依赖于线程是如何被日程安排的。当他们启动，休眠，执行相对于彼此。它依赖于线程之间的时间-几乎不同时。因此Race conditions是真的难以调试。在一个传统的线程模型中，解决方案就是当你修改它的时候lock这个资源，但是如果你不小心就会造成死锁。另外的方案就是使用一个序列化的队列去限制存取到资源</p><p name="af53" id="af53" class="graf graf--p graf-after--p">优先级颠倒：你可以给线程赋予不同的优先级。例如UI 每16s刷新屏幕比做数据库维护有一个更高的优先级。当一个低优先级的预先制止高优先级任务。可能的场景：一个低优先级任务开始了，低优先级需要存取共享的资源，因此它锁住了它去阻止race 条件，然后继续工作。然后一个中等优先级任务也到达，并且它是十分重要的，处理器开始在中间的任务之间工作，将低优先级任务休眠。共享的资源仍然被休眠的任务锁着，然后高优先级任务到达，然后休眠中间的任务，有一点，高优先级任务需要存取到共享的资源，视图去获取一个lock。但是资源被低优先级的任务锁住了，因此一个高优先级任务进入休眠当它等待资源队列变为可用。此刻，中间优先级的任务仍然继续运行，尽管它不需要共享的资源。此刻优先级颠倒发生了，因为中等优先级任务通过高优先级任务有一个明显的token优先，一旦中间任务完成，低优先级任务执行，优先级颠倒仍然在发生，当高优先级任务休眠的时候，低优先级任务仍在运行，当这低优先级任务释放了lock，高优先级任务能获取它并且执行，高优先级任务完成后，低优先级任务能完成。这是一个很难去辨认的问题，因为它是有问题的，GCD和Operation解决了它。通过晋升低优先级任务到同样的等级作为高优先级任务，高优先级任务不跳过queue，但是低优先级任务不久完成，因此它们不能减慢太多。</p><p name="95a3" id="95a3" class="graf graf--p graf-after--p">死锁</p><p name="34a8" id="34a8" class="graf graf--p graf-after--p">GCD和Opertaion帮你消除了前面的二个，但是你必须保持你的敏捷去消除死锁。</p><p name="cc95" id="cc95" class="graf graf--p graf-after--p">线程1和线程2都等着彼此释放共享的资源或者需要做一些事去继续。</p><p name="5723" id="5723" class="graf graf--p graf-after--p">线程1请求和获取一个锁在资源1上；没有问题</p><p name="4f61" id="4f61" class="graf graf--p graf-after--p">线程2请求和获取一个lock在资源2上；也没有问题</p><p name="d4dc" id="d4dc" class="graf graf--p graf-after--p">线程1请求一个锁在资源2上，不能获取它，因此进入了休眠，这也没有问题</p><p name="86d7" id="86d7" class="graf graf--p graf-after--p">线程2将完成和释放它在资源2上的锁，执行仍然继续。</p><p name="e36b" id="e36b" class="graf graf--p graf-after--p">但是然而，线程2需要资源1（被线程1lock），此刻正在休眠。线程2不能在资源1上得到一个锁，因此它也进入了休眠。</p><p name="dad9" id="dad9" class="graf graf--p graf-after--p">线程1正在等着线程2去释放资源2；</p><p name="b97d" id="b97d" class="graf graf--p graf-after--p">线程2等着线程1去释放资源1；</p><p name="6115" id="6115" class="graf graf--p graf-after--p">因此线程都进入了休眠，这些线程都将不能去继续。</p><p name="c6a1" id="c6a1" class="graf graf--p graf-after--p">这就是死锁。</p><p name="fde4" id="fde4" class="graf graf--p graf-after--p graf--trailing">lock是对于race condition是一个解决方案，它能被序列化的队列去解决，这将也修复死锁场景，但是更为精妙的死锁场景能产生</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/ios-app-development" class="p-tag">iOS App Development</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/f62b2f75c8a9"><time class="dt-published" datetime="2017-06-11T11:46:41.926Z">June 11, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/gcd%E4%BB%8B%E7%BB%8D-f62b2f75c8a9" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

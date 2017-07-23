@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>性能</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">性能</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="ca7e" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="6bfb" id="6bfb" class="graf graf--p graf--leading">iOS App性能</p><p name="8943" id="8943" class="graf graf--p graf-after--p">对于一个技术而言，严格来说性能是一个非常模糊的术语。当有些人标识一些应用为一个高性能的App，它们从来不知道那意味着什么。App使用较少的内存？在网络使用上省钱？亦或是它工作流畅？这种意义很复杂，它暗示了很多东西。</p><blockquote name="86b3" id="86b3" class="graf graf--blockquote graf-after--p">性能属性</blockquote><blockquote name="f8ad" id="f8ad" class="graf graf--blockquote graf-after--blockquote">性能指标是面向用户的属性。每个属性可能是一个因素的一个或多个工程参数可以测量”。</blockquote><h4 name="4d64" id="4d64" class="graf graf--h4 graf-after--blockquote">内存</h4><p name="dd61" id="dd61" class="graf graf--p graf-after--h4">内存指的是App要求运行时的最小RAM，它耗尽的平均和最大内存。最小内存在硬件上有一个强大的约束，然而更高的平均或者高峰内存则意味着后台App将被抹杀掉。<br> 因此你必须确认你没有内存泄露。随着时间的推移,逐渐增加内存消耗导致更高的应用程序崩溃的可能性由于内存不足异常。</p><h4 name="0167" id="0167" class="graf graf--h4 graf-after--p">电源消耗量</h4><p name="babc" id="babc" class="graf graf--p graf-after--h4">当你写有效代码的时候，这是一个十分重要的因素去应对。你的数据结构和算法在执行时间和CPU资源的选项中必须有效，但是你还需要考虑其他因素。如果你的应用程序消耗电池,放心,没人会欣赏它。功耗不仅仅是计算CPU周期还包括有效地使用硬件。因此重要的是不仅减少电力消耗,还确保用户体验不是退化</p><h4 name="a52a" id="a52a" class="graf graf--h4 graf-after--p">初始化时间</h4><p name="a76b" id="a76b" class="graf graf--p graf-after--h4">应用程序应该执行足够的任务在启动初始化本身,这样用户可以使用它。执行这些任务的时间是应用程序的初始化时间,刚好是一个开放式term-finding平衡依赖于应用程序的需求。一种选择是延迟对象创建和初始化(即到应用程序的第一个用法。,直到所需的对象)。这就是所谓的延迟初始化。这是一个很好的策略,但是用户不应该一直等待任何后续每次执行任务。下面的列表列出一些你可能想要执行的操作在应用程序的初始化,没有特定的顺序:<br> 1，检查应用程序是否被首次推出。<br> 2，检查用户是否登录。<br> 3，如果用户已登录,加载之前的状态,如果适用的话。<br> 4，连接到服务器的最新变化。<br> 5，检查应用程序启动的深度链接。<br> 6，如果是这样,加载UI和深层链接的状态。<br> 7，检查是否有等待任务从上一次应用程序启动。如果需要恢复它们。<br> 8，初始化你后续想使用的对象和线程池<br> 9，初始化依赖，例如相关对象的映射，崩溃报告系统，和缓存<br> 这个列表可以增长很快,很难决定什么保持在发射时间和推迟到下一个几毫秒。</p><h4 name="5f6a" id="5f6a" class="graf graf--h4 graf-after--p">执行速度</h4><p name="299b" id="299b" class="graf graf--p graf-after--h4">一旦用户打开一个应用程序,它的预期是尽快工作。任何必要的处理应该在尽可能少的时间处理。例如,考虑一个照片应用程序。实时预览等简单的效果是理想的亮度或对比度变化的处理需要发生在毫秒。这可能需要为当地的计算并行处理或者卸载到服务器进行复杂的任务的能力。</p><h4 name="5cda" id="5cda" class="graf graf--h4 graf-after--p">反应灵敏</h4><p name="8d1e" id="8d1e" class="graf graf--p graf-after--h4">一旦用户打开一个应用程序,它的预期是尽快工作。任何必要的处理应该在尽可能少的时间处理。例如,考虑一个照片应用程序。实时预览等简单的效果是理想的亮度或对比度变化的处理需要发生在毫秒。这可能需要为当地的计算并行处理或者卸载到服务器进行复杂的任务的能力。</p><h4 name="f06f" id="f06f" class="graf graf--h4 graf-after--p">本地缓存</h4><p name="d084" id="d084" class="graf graf--p graf-after--h4">任何应用程序在服务器上存储数据和/或刷新其数据从外部源必须计划离线浏览本地存储的功能。例如,邮件程序将至少说明以前下载的消息如果网络不存在或设备处于离线模式。同样,一个新闻应用程序应该能够显示最近更新的新闻为离线模式以及一个指示器显示文章都是新的和未读。然而,从本地存储和同步数据加载应该无痛、快速。这可能需要选择不仅要本地缓存的数据,而且数据的结构,选择从一个主机的选择,以及同步的频率。<br> 如果你的App使用了本地缓存，你应该提供一个选项去清楚它。不幸地是，许多市场上的App从来没有这样做。<br> 更令人担忧的是,其中的一些应用程序消耗几百兆字节的存储。用户经常卸载这些程序回收本地存储。这导致了糟糕的用户体验,从而威胁到应用程序的成功。以下就是例子。</p><figure name="f2dd" id="f2dd" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*S35m8LP3CXmR0XiLJaha8w.jpeg" alt="IMG_0202" src="https://cdn-images-1.medium.com/max/800/1*S35m8LP3CXmR0XiLJaha8w.jpeg"></div></figure><figure name="f47b" id="f47b" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*OizkMmsDDjXvx0mCzmcN6A.jpeg" alt="IMG_0203" src="https://cdn-images-1.medium.com/max/800/1*OizkMmsDDjXvx0mCzmcN6A.jpeg"></div></figure><figure name="d8f7" id="d8f7" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*1dGewD2i-cRTC_DsTAlXwQ.jpeg" alt="IMG_0204" src="https://cdn-images-1.medium.com/max/800/1*1dGewD2i-cRTC_DsTAlXwQ.jpeg"></div></figure><p name="3ad7" id="3ad7" class="graf graf--p graf-after--figure">Tips：总是给一个最后用户一个选项去清除本地缓存。如果用户有iCloud备份可用，应用程序数据将消耗用户的存储配额。谨慎地使用它。</p><h4 name="4e13" id="4e13" class="graf graf--h4 graf-after--p">互用性</h4><p name="ce59" id="ce59" class="graf graf--p graf-after--h4">用户可能使用多个应用程序来完成一项任务,这就要求在他们的互操作性。例如,相册可以观赏到最佳景象幻灯片应用但可能需要另一个应用程序进行编辑。查看器应用程序应该能够将照片发送到编辑器和接收编辑照片。iOS提供多个选项的互操作性和在应用程序之间共享数据。UIActivityViewController、深度链接和MultipeerConnectivity框架iOS的选择。<br> 给深度链接定义一个好的URL结构和写好的代码去解析它同样重要。相似的，对于使用共享表来共享数据，重要的是识别的内容共享的安全问题以及照顾来自处理来自不受信任来源的内容。这将是一个非常糟糕的用户体验,如果你的应用程序仅仅花了很长时间准备的数据共享与附近的设备。</p><h4 name="5c26" id="5c26" class="graf graf--h4 graf-after--p">网络条件</h4><p name="3519" id="3519" class="graf graf--p graf-after--h4">在不同网络条件使用移动设备。为了确保最好的用户体验,您的应用程序必须在以下场景:所有的工作。<br> 1，高带宽和持久的网络<br> 2，低带宽但是持久网络<br> 3，高带宽但零星的网络<br> 4，低带宽但零星的网络<br> 5，无网络<br> 这是可以接受的为用户显示一个进度指示器或一条错误消息,但是它不是无限期接受块或让应用程序崩溃。</p><h4 name="c018" id="c018" class="graf graf--h4 graf-after--p">带宽</h4><p name="28ec" id="28ec" class="graf graf--p graf-after--h4">人们使用他们的移动设备在不同网络类型的速度从数百千比特每秒每秒数万。因此,最优地利用带宽,是另一个重要参数,它定义了你的产品的质量。此外,如果你发展你的应用程序使用低带宽条件下,运行在高带宽的条件下可以产生不同的结果。在低带宽条件下,初始化应用程序的本地早在最初来自服务器的响应会发生,我们调整这些条件的应用。然而,应用程序集中在韩国市场,当我们测试它,结果是非常不同的。没有我们的优化工作,我们不得不重写大量的代码,可能会导致资源和数据争用。规划高性能并不总是导致优化,但也可以导致权衡。</p><h4 name="0bd3" id="0bd3" class="graf graf--h4 graf-after--p">数据刷新</h4><p name="d1eb" id="d1eb" class="graf graf--p graf-after--h4">即使你没有任何离线浏览功能，你可以从服务器仍然定期刷新数据。你的速度刷新和传输的数据量会影响整体数据消费。如果传输的总字节数很大,用户必然会迅速耗尽他的数据计划。如果这个值足够大,你可能已经失去了一个用户。在iOS 6。x和,如果你的应用背景,应用程序不能刷新数据。在iOS 7起,应用程序可以使用背景应用程序刷新周期刷新。即时聊天软件,持久的原始HTTP或TCP连接可能是更有用的。</p><h4 name="bea8" id="bea8" class="graf graf--h4 graf-after--p">多用户支持</h4><p name="15f1" id="15f1" class="graf graf--p graf-after--h4">一个家庭可能共享一个移动设备或用户可能有多个相同的应用程序。例如,两个兄弟姐妹可以共享相同的iPad的游戏。另外一个例子,一个家庭可能需要配置一个设备来检查每个人的邮件在假期漫游最小化成本,特别是在国际旅行。同样,一个人可能有多个电子邮件帐户进行配置。是否需要支持多个并发用户将取决于你的产品。但是如果你决定提供此功能,确保遵循这些指导方针:添加一个新用户应该有效。更新的用户应该有效。切换用户应该有效。用户和数据的边界应该是整洁的,没有任何错误。</p><h4 name="4194" id="4194" class="graf graf--h4 graf-after--p">单点登录</h4><p name="aba1" id="aba1" class="graf graf--p graf-after--h4">如果您已经创建了多个应用程序允许或要求登录,它总是一个好主意来支持单点登录(SSO)。如果一个用户登录到你的一个应用程序,它应该是一键登录到您的其他应用程序。这个过程不仅需要在应用程序之间共享数据还需要共享状态,同步在您的应用程序,等等。例如,如果用户使用应用程序的迹象,signout也应该发生在所有其他应用程序,用户在使用SSO签署。</p><h4 name="d738" id="d738" class="graf graf--h4 graf-after--p">安全</h4><p name="f946" id="f946" class="graf graf--p graf-after--h4">在手机应用程序安全是至关重要的,特别是因为敏感信息可能在应用程序之间共享。重要的是要保障所有通信,以及本地和共享数据。实现安全需要额外计算、内存或者存储,这是和你的最终目标,争取最大速度和最小内存和存储需求。因此,你需要安全性和其他因素之间权衡。添加多层安全降解性能和可能有一个可感知的对用户体验造成负面影响。你画的线与安全应用程序和用户人口 — — 确定。此外,硬件方面扮演着重要的角色:选择的选项取决于设备的计算能力。</p><h4 name="c1b7" id="c1b7" class="graf graf--h4 graf-after--p">崩溃</h4><p name="8b36" id="8b36" class="graf graf--p graf-after--h4 graf--trailing">应用程序可以崩溃。极端的优化可能会导致崩溃。同样,使用本机C代码会导致崩溃。一个高性能的应用程序将尝试不仅保护自己从崩溃,还优雅地恢复如果崩溃发生时,特别是在事故发生时的操作。</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/性能法则" class="p-tag">性能法则</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/a82c979b91c3"><time class="dt-published" datetime="2016-10-13T04:59:25.754Z">October 13, 2016</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/%E6%80%A7%E8%83%BD-a82c979b91c3" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

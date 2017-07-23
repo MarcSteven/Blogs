@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>使用IBAnalyzer去消除XIB或者Storyboard中的崩溃</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">使用IBAnalyzer去消除XIB或者Storyboard中的崩溃</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="ec86" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="17fe" id="17fe" class="graf graf--p graf--leading">1，发现类中没有实现的outlets 和action。消除被异常引起的崩溃。</p><pre name="0c5b" id="0c5b" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0">*** Terminating app due to uncaught exception &#39;NSUnknownKeyException&#39;, reason: &#39;<br><br> class is not key value coding-compliant for the key twitterImageView.&#39;</code></pre><p name="beca" id="beca" class="graf graf--p graf-after--pre">2，发现@IBOutlets 和@IBAction在代码中定义了，但是却没有在xib中连接</p><pre name="8ac1" id="8ac1" class="graf graf--pre graf-after--p graf--trailing"><code class="markup--code markup--pre-code">@IBAction func tappedBottomButton(_ :AnyObject) {<br>//do something here<br>}<br>或者<br>@IBOutlet fileprivate weak var label:UILabel!</code></pre></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/swift" class="p-tag">Swift</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/625b7bc20786"><time class="dt-published" datetime="2017-06-01T14:17:23.889Z">June 1, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/%E4%BD%BF%E7%94%A8ibanalyzer%E5%8E%BB%E6%B6%88%E9%99%A4xib%E6%88%96%E8%80%85storyboard%E4%B8%AD%E7%9A%84%E5%B4%A9%E6%BA%83-625b7bc20786" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>RxSwift</title><meta name="description" content="RxSwift 是一个第三方的库，通过使用可见的序列和函数化的风格来结合异步和基于事件的操作，运行参数通过Scheudler来执行。"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">RxSwift</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+RxSwift 是一个第三方的库，通过使用可见的序列和函数化的风格来结合异步和基于事件的操作，运行参数通过Scheudler来执行。
+</section>
+<section data-field="body" class="e-content">
+<section name="93f2" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="6fd6" id="6fd6" class="graf graf--h3 graf--leading graf--title">RxSwift</h3><p name="f4fc" id="f4fc" class="graf graf--p graf-after--h3">RxSwift 是一个第三方的库，通过使用可见的序列和函数化的风格来结合异步和基于事件的操作，运行参数通过Scheudler来执行。</p><p name="1c57" id="1c57" class="graf graf--p graf-after--p">它的优势，简化了异步代码-通过允许你的代码以序列化和隔离的方式对新的数据做出反应</p><p name="cae1" id="cae1" class="graf graf--p graf-after--p">在iOS中关于异步程序都有哪些呢？</p><p name="d55a" id="d55a" class="graf graf--p graf-after--p">1，对于button点击事件做出反应</p><p name="4e36" id="4e36" class="graf graf--p graf-after--p">2，TextField编辑完毕后Keyboard的动作</p><p name="b4a4" id="b4a4" class="graf graf--p graf-after--p">3，从网络上下载较大的图片</p><p name="8393" id="8393" class="graf graf--p graf-after--p">4，保存数据到disk</p><p name="472f" id="472f" class="graf graf--p graf-after--p">5，播放声音</p><p name="e63e" id="e63e" class="graf graf--p graf-after--p">等等</p><p name="1a97" id="1a97" class="graf graf--p graf-after--p">所有的这些似乎看起来同时进行的，然而键盘移除屏幕和app的声音你从来不终止直到动画完成。所有这些程序都不互相阻塞对方的执行。iOS提供了一系列的API来运行你在不同线程中执行这些任务。</p><p name="65c0" id="65c0" class="graf graf--p graf-after--p">Cocoa 和UIKit 异步API</p><p name="300f" id="300f" class="graf graf--p graf-after--p">1，NotificationCenter：一件有趣的事情发生了则执行一块代码，例如用户改变了设备的方向，或者软件键盘显示或者隐藏</p><p name="54c6" id="54c6" class="graf graf--p graf-after--p">2，delegate 模式：定义方法去被另外的类来执行，例如appDelegate中，你定义了当一个新的远程通知到来的时候，但是当这块代码将被执行的时候，你根本一无所知</p><p name="0d13" id="0d13" class="graf graf--p graf-after--p">3，GCD：抽象工作的片段的执行。</p><p name="9445" id="9445" class="graf graf--p graf-after--p">4,closuers：创建独立的代码,您可以通过类之间的每个类可以决定在什么情况下。是否执行与否,多少次。</p><p name="bafd" id="bafd" class="graf graf--p graf-after--p">同步代码：</p><p name="3a77" id="3a77" class="graf graf--p graf-after--p">var array = [1,2,4]</p><p name="c307" id="c307" class="graf graf--p graf-after--p">for number in array {</p><p name="fdfe" id="fdfe" class="graf graf--p graf-after--p">debugPrint(number)</p><p name="a777" id="a777" class="graf graf--p graf-after--p">array = [4,8,9]</p><p name="ae0e" id="ae0e" class="graf graf--p graf-after--p">}</p><p name="3503" id="3503" class="graf graf--p graf-after--p">debugPrint(array)</p><p name="431b" id="431b" class="graf graf--p graf-after--p">RxSwift 试图记录下面的问题</p><p name="de29" id="de29" class="graf graf--p graf-after--p">1，状态，特别是计算的状态</p><p name="ef09" id="ef09" class="graf graf--p graf-after--p">状态是很难去定义的。当你开启你的笔记本，但是你使用它一天后，它开始执行一些奇怪的宕机或者拒绝跟你交互。硬件和软件保持一样的，但是改变的状态是什么呢，一旦你重启，软件和硬件同样的结合并且工作一会。</p><p name="51b6" id="51b6" class="graf graf--p graf-after--p">2，imperative 程序</p><p name="6636" id="6636" class="graf graf--p graf-after--p">是一个程序的模板去使用程序句去改变程序 状态</p><p name="06a3" id="06a3" class="graf graf--p graf-after--p">3，side effects</p><p name="0674" id="0674" class="graf graf--p graf-after--p">是任何改变对于当前域之外的状态。例如，任何时候，你修改存储在disk上的数据或者更新屏幕上的标签，你都会引起side effects。</p><p name="07c0" id="07c0" class="graf graf--p graf-after--p">side effects本身并不是坏的，毕竟side effect是任何程序的最终目标，你需要你的程序已经完成执行后改变世界的状态。</p><p name="a660" id="a660" class="graf graf--p graf-after--p">处理side effect的问题是以一个可控的方式进行的，你需要决定哪部分代码将会引起side effects</p><p name="ae38" id="ae38" class="graf graf--p graf-after--p">4，Declarative code</p><p name="8c1e" id="8c1e" class="graf graf--p graf-after--p">它让你定义了行为的片段，RxSwift将会在任何时候将会运行这些行为，那有一个相对的事件和提供他们一个不可计算的，隔离数据输入去一起工作。这种方式你能和异步代码一起工作。</p><p name="5189" id="5189" class="graf graf--p graf-after--p">5，响应式的系统</p><p name="48ba" id="48ba" class="graf graf--p graf-after--p">响应：保持UI到最新状态，呈现App最新状态</p><p name="7421" id="7421" class="graf graf--p graf-after--p">适应力强：每个行为被定义在隔离的场景中，并且提供了简洁的错误发现机制</p><p name="212d" id="212d" class="graf graf--p graf-after--p">弹性较强：代码处理变化的工作负载，经常实现特性例如趋于拉的laze数据集合，资源共享</p><p name="5a91" id="5a91" class="graf graf--p graf-after--p">趋于消息：组件使用基于信息的交互的方式来达到重用和隔离。</p><p name="8fe6" id="8fe6" class="graf graf--p graf-after--p">RxSwift的核心代码：</p><p name="f707" id="f707" class="graf graf--p graf-after--p">Observables：它允许类去订阅值通过另外的类去发出：</p><p name="e2ee" id="e2ee" class="graf graf--p graf-after--p">ObservableType协议是十分简单的，一个Observable可以发出三个类型事件：Next event：传输最新的数据值，这是观察者接受值的方式</p><p name="fbb0" id="fbb0" class="graf graf--p graf-after--p">completed event：事件队列以成功结束</p><p name="eddb" id="eddb" class="graf graf--p graf-after--p">Error Event：带有一个错误，将不会发出任何事件：</p><p name="4d2e" id="4d2e" class="graf graf--p graf-after--p">有限的Observable 队列：发出0，1或者更多的值，最后，要么执行成功要么失败</p><p name="8887" id="8887" class="graf graf--p graf-after--p">无限的Observable队列：例如你增加一个类作为一个观察者去检测一个设备方向改变，然后你提供方法回调去处理方向改变的操作</p><p name="6d70" id="6d70" class="graf graf--p graf-after--p">Operators</p><p name="e024" id="e024" class="graf graf--p graf-after--p">Schedulers</p><p name="fb12" id="fb12" class="graf graf--p graf-after--p graf--trailing"><a href="https://github.com/ReactiveX/RxSwift" data-href="https://github.com/ReactiveX/RxSwift" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://github.com/ReactiveX/RxSwift</a></p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/301d8900929c"><time class="dt-published" datetime="2017-06-16T15:32:17.694Z">June 16, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/rxswift-301d8900929c" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Autolayout -from Training to leading</title><meta name="description" content="There are more methods here ,very similar to use .Which method we should use to change and then achieve the frame We want..Then you end up…"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Autolayout -from Training to leading</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+There are more methods here ,very similar to use .Which method we should use to change and then achieve the frame We want..Then you end up…
+</section>
+<section data-field="body" class="e-content">
+<section name="a83e" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="cb90" id="cb90" class="graf graf--h3 graf--leading graf--title">Autolayout -from Training to leading</h3><p name="78d9" id="78d9" class="graf graf--p graf-after--h3">There are more methods here ,very similar to use .Which method we should use to change and then achieve the frame We want..Then you end up with one single one line code to try ,but finally you got angry as Nothing work rightly though you called these methods.</p><figure name="8a6a" id="8a6a" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 355px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 50.8%;"></div><img class="graf-image" data-image-id="1*8DLLZgV2RndbcGh3wYHUhw.png" data-width="1186" data-height="602" src="https://cdn-images-1.medium.com/max/800/1*8DLLZgV2RndbcGh3wYHUhw.png"></div></figure><p name="51cd" id="51cd" class="graf graf--p graf-after--figure">So all the way out is much a huge black box right for many developers never knows what’s happening well.The good news is this set needsDisplay method in the lower corner left is not related to layout at all ,so we should get rid of it .</p><p name="dc21" id="dc21" class="graf graf--p graf-after--p">So our questions arises,what’s the layout ????</p><p name="0d4b" id="0d4b" class="graf graf--p graf-after--p">????????????????</p><blockquote name="b23e" id="b23e" class="graf graf--blockquote graf-after--p">1,Layout is that :</blockquote><blockquote name="87f4" id="87f4" class="graf graf--blockquote graf-after--blockquote">What to draw ,where to draw,It does not define how to draw as that’s drawing algorithm ,it’s a completely different thing.</blockquote><p name="d45f" id="d45f" class="graf graf--p graf-after--blockquote">For instance as the pic</p><figure name="3425" id="3425" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 462px; max-height: 460px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 99.6%;"></div><img class="graf-image" data-image-id="1*_lPVx2OYpntxFECEq_P8Ug.png" data-width="462" data-height="460" src="https://cdn-images-1.medium.com/max/800/1*_lPVx2OYpntxFECEq_P8Ug.png"></div></figure><p name="dcfe" id="dcfe" class="graf graf--p graf-after--figure">If we just have one element here ,we define its X,Y,width and height.That’s work well..</p><blockquote name="f707" id="f707" class="graf graf--blockquote graf-after--p">X+Y = Origin,width+ height = size ,so The frame is Origin + Size.</blockquote><figure name="1ea7" id="1ea7" class="graf graf--figure graf-after--blockquote"><div class="aspectRatioPlaceholder is-locked" style="max-width: 594px; max-height: 302px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 50.8%;"></div><img class="graf-image" data-image-id="1*fjy0WnvL1zHU1QBy0fR9wA.png" data-width="594" data-height="302" src="https://cdn-images-1.medium.com/max/800/1*fjy0WnvL1zHU1QBy0fR9wA.png"></div></figure><p name="b23a" id="b23a" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">So put it simple layout is another word to determine frames for the views on screen.</strong></p><blockquote name="1446" id="1446" class="graf graf--blockquote graf-after--p">2,Determine frames for all views on Screen</blockquote><p name="46b8" id="46b8" class="graf graf--p graf-after--blockquote">How we do that?</p><p name="69c1" id="69c1" class="graf graf--p graf-after--p">2.1The easy way to do it is to write down the frame explicitly right .(Manually portion).Traditional approach how it was done several years ago .We just write these code as below:</p><p name="ae6e" id="ae6e" class="graf graf--p graf-after--p">Button.frame = CGRect(x:0,y:0,width:34,height:34)</p><p name="f64a" id="f64a" class="graf graf--p graf-after--p">But this approach worked great as Several years ago we just had particular devices size for iPhone.Just 320 pixels width.</p><p name="6ade" id="6ade" class="graf graf--p graf-after--p graf--trailing">But now there are more devices here ,for instance iPhone7 plus ,iPhone 7,iPhone6 plus and so on .So when we have more devices ,this apporach doesnot work well any more.This is because this is how we want our button to resize right actually we wanna have horizital padding to screen on the both side.</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/ios" class="p-tag">iOS</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/4789e049af2e"><time class="dt-published" datetime="2017-07-07T22:19:28.239Z">July 7, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/autolayout-from-training-to-leading-4789e049af2e" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

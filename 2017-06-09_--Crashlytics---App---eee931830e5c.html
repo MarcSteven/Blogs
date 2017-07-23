@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>使用Crashlytics来进行App追踪</title><meta name="description" content="为什么我们要进行App信息汇总，为了改善产品，为了统计用户，为了分析市场，为了修改 Bug,总之如果你想要互联网产品做到更加完善就必须进行这项工作。"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">使用Crashlytics来进行App追踪</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+为什么我们要进行App信息汇总，为了改善产品，为了统计用户，为了分析市场，为了修改 Bug,总之如果你想要互联网产品做到更加完善就必须进行这项工作。
+</section>
+<section data-field="body" class="e-content">
+<section name="0f58" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="b541" id="b541" class="graf graf--h3 graf--leading graf--title">使用Crashlytics来进行App追踪</h3><p name="13f1" id="13f1" class="graf graf--p graf-after--h3">为什么我们要进行App信息汇总，为了改善产品，为了统计用户，为了分析市场，为了修改 Bug,总之如果你想要互联网产品做到更加完善就必须进行这项工作。</p><p name="39aa" id="39aa" class="graf graf--p graf-after--p">用户千万，我们不可能根据用户的每条信息，每个图片，每个视频来判断产品问题，表象的东西总会让人扑朔迷离，因为得到的信息就是一个结果，过程发生了什么，不知道，或许客户根本就描述不清楚，那么这样我们又怎么能进行更好的完善呢？问题的定位不准，在后续改善的时候就会花费更长的时间，这样效率很难说提高。</p><p name="4920" id="4920" class="graf graf--p graf-after--p">2，通过数据分析得到准确数据，对所有用户的信息进行统计，这对于市场是有很大帮助的，对于这方面不多说了，我仅以一个开发者的角度来谈谈。</p><h3 name="25cf" id="25cf" class="graf graf--h3 graf-after--p">选择哪个SDK去收集这些信息呢？</h3><h3 name="8117" id="8117" class="graf graf--h3 graf-after--h3">友盟 VS Crashlytics(Crashlytics出自twitter公司）</h3><p name="f873" id="f873" class="graf graf--p graf-after--h3">它们的特点：</p><p name="bc69" id="bc69" class="graf graf--p graf-after--p">友盟：</p><p name="f2e6" id="f2e6" class="graf graf--p graf-after--p">1，应用趋势分析：新增用户、活跃用户、启动次数、版本分布、行业指标等数据</p><p name="e5a0" id="e5a0" class="graf graf--p graf-after--p">2，渠道分析：从而找准定位点，提升运营效率</p><p name="c732" id="c732" class="graf graf--p graf-after--p">3，客户留存分析：从而可以确认用户对于产品的使用效果反馈</p><p name="c584" id="c584" class="graf graf--p graf-after--p">4，行为分析：统计App中用户操作最为频繁的页面内容</p><p name="385d" id="385d" class="graf graf--p graf-after--p">5，用户属性：精准统计用户的位置，从而了解用户的来源</p><p name="e1cc" id="e1cc" class="graf graf--p graf-after--p">6，错误分析：奔溃日志收集，错误管理，分析工具</p><p name="8666" id="8666" class="graf graf--p graf-after--p">Crashlytic:</p><p name="c826" id="c826" class="graf graf--p graf-after--p">1,用户留存：得知用户流失情况，图表是以i学习为例获取的，日活动用户降低50%,周活动用户降低40%，月活动用户降低41.7%</p><figure name="7db5" id="7db5" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 469px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 67.10000000000001%;"></div><img class="graf-image" data-image-id="1*0pYyLLgKWDoWMZnQkKdRrg.png" data-width="1998" data-height="1340" src="https://cdn-images-1.medium.com/max/800/1*0pYyLLgKWDoWMZnQkKdRrg.png"></div></figure><p name="8d1d" id="8d1d" class="graf graf--p graf-after--figure">2，增长：</p><p name="9bfc" id="9bfc" class="graf graf--p graf-after--p">包含：新用户的百分比，新用户登录情况，新用户注册情况，分析详情，邀请详情，分支安装详情</p><figure name="32f9" id="32f9" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 468px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 66.8%;"></div><img class="graf-image" data-image-id="1*3Lx9VLrhifwrWvJjtltxqQ.png" data-width="2024" data-height="1352" src="https://cdn-images-1.medium.com/max/800/1*3Lx9VLrhifwrWvJjtltxqQ.png"></div></figure><p name="76d9" id="76d9" class="graf graf--p graf-after--figure">3，关键性能监控：</p><p name="a155" id="a155" class="graf graf--p graf-after--p">a:电子商务：结账，添加到购物车，购买</p><p name="0319" id="0319" class="graf graf--p graf-after--p">b：目录：浏览的目录，搜索，分析的目录，喜欢的目录</p><p name="1f42" id="1f42" class="graf graf--p graf-after--p">c：针对用户：登录，注册，邀请</p><p name="e288" id="e288" class="graf graf--p graf-after--p">使用难易程度：比较容易，四步，仅仅二行代码就可以搞定，SDK强大。</p><p name="96b4" id="96b4" class="graf graf--p graf-after--p">4，崩溃信息收集</p><figure name="6aee" id="6aee" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 503px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 71.8%;"></div><img class="graf-image" data-image-id="1*-Zue1ZM5-sbeDm-s5BFBeg.png" data-width="1966" data-height="1412" src="https://cdn-images-1.medium.com/max/800/1*-Zue1ZM5-sbeDm-s5BFBeg.png"></div></figure><p name="6a1b" id="6a1b" class="graf graf--p graf-after--figure">5，最新发布</p><figure name="c699" id="c699" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 392px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 55.900000000000006%;"></div><img class="graf-image" data-image-id="1*8rdSDIet_J2nyndPxE8bzA.png" data-width="2006" data-height="1122" src="https://cdn-images-1.medium.com/max/800/1*8rdSDIet_J2nyndPxE8bzA.png"></div></figure><p name="24e0" id="24e0" class="graf graf--p graf-after--figure">包含，推荐的调查，稳定性，适配性（从表中可得，目前适配iOS10.3.1,10.3.2,OK),目前完全适配iPhone6和iPhone5s,根据用户注册的设备从适配性就可以得知是否兼容其他用户的设备</p><figure name="865c" id="865c" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 220px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 31.5%;"></div><img class="graf-image" data-image-id="1*5-KDwoN5nhuQiKksB966WQ.png" data-width="1918" data-height="604" src="https://cdn-images-1.medium.com/max/800/1*5-KDwoN5nhuQiKksB966WQ.png"></div></figure><p name="452b" id="452b" class="graf graf--p graf-after--figure">6，Engagement翻译过来为订婚的意思，我觉得翻译为约会为好，这个数据代表了用户使用你的App的时间长短，所以用户与你的约会时间越长，则用户对产品的依赖性越强。</p><p name="8058" id="8058" class="graf graf--p graf-after--p">7，用户的范围，会统计用户的所有来源，涵盖全世界，这点友盟是比不了的，它只能统计中国。</p><figure name="5298" id="5298" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 452px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 64.60000000000001%;"></div><img class="graf-image" data-image-id="1*hsHW4c2tZQOij79pLZDhxw.png" data-width="2038" data-height="1316" src="https://cdn-images-1.medium.com/max/800/1*hsHW4c2tZQOij79pLZDhxw.png"></div></figure><p name="a0f1" id="a0f1" class="graf graf--p graf-after--figure">8，App的收入情况</p><p name="ba10" id="ba10" class="graf graf--p graf-after--p">包含了购买，加入购物车，结账</p><figure name="c12a" id="c12a" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 546px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 78%;"></div><img class="graf-image" data-image-id="1*GTTfhKcyDSNS6KfbEQoe0g.png" data-width="1816" data-height="1416" src="https://cdn-images-1.medium.com/max/800/1*GTTfhKcyDSNS6KfbEQoe0g.png"></div></figure><p name="89aa" id="89aa" class="graf graf--p graf-after--figure">9，工具</p><figure name="3644" id="3644" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 496px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 70.89999999999999%;"></div><img class="graf-image" data-image-id="1*K_mSXXGVT1X9T2tX-RBfeA.png" data-width="1994" data-height="1414" src="https://cdn-images-1.medium.com/max/800/1*K_mSXXGVT1X9T2tX-RBfeA.png"></div></figure><p name="d07e" id="d07e" class="graf graf--p graf-after--figure">10，管理群组：实现团队成员对于项目的完成</p><p name="5a09" id="5a09" class="graf graf--p graf-after--p">11，增加新的工具：例如游戏分析,AppSee</p><figure name="535a" id="535a" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 383px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 54.7%;"></div><img class="graf-image" data-image-id="1*qJWSCcMNB01vNq0K1kjt-A.png" data-width="2416" data-height="1322" src="https://cdn-images-1.medium.com/max/800/1*qJWSCcMNB01vNq0K1kjt-A.png"></div></figure><figure name="5b7c" id="5b7c" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 329px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 47%;"></div><img class="graf-image" data-image-id="1*iEdY47Z6sVTawRa4wpYwUw.png" data-width="2334" data-height="1098" src="https://cdn-images-1.medium.com/max/800/1*iEdY47Z6sVTawRa4wpYwUw.png"></div></figure><p name="aeeb" id="aeeb" class="graf graf--p graf-after--figure">12，发布部署实现自动化fastlane让重复的工作效率化。</p><h3 name="cf4e" id="cf4e" class="graf graf--h3 graf-after--p">说完了这些，到底采用哪个呢？</h3><p name="ca6f" id="ca6f" class="graf graf--p graf-after--h3">Crashlytics SDK的易用性完胜友盟，功能的扩展性也超越了它。</p><p name="ebf3" id="ebf3" class="graf graf--p graf-after--p">下面是Crashlytic的安装方法：</p><p name="b3a7" id="b3a7" class="graf graf--p graf-after--p">你下载Fabric，然后登陆，需要哪个点击哪个，然后安装步骤一步一步来，就是这么简单，快捷，最主要的是性能完胜友盟。</p><figure name="cb5c" id="cb5c" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 636px; max-height: 1064px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 167.3%;"></div><img class="graf-image" data-image-id="1*vdmu1xhgZpNa15UEI6Lc2A.png" data-width="636" data-height="1064" src="https://cdn-images-1.medium.com/max/800/1*vdmu1xhgZpNa15UEI6Lc2A.png"></div></figure><figure name="c20b" id="c20b" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 622px; max-height: 988px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 158.8%;"></div><img class="graf-image" data-image-id="1*DyOejaT9PPxnyXEDEZOVRQ.png" data-width="622" data-height="988" src="https://cdn-images-1.medium.com/max/800/1*DyOejaT9PPxnyXEDEZOVRQ.png"></div></figure><figure name="cfcb" id="cfcb" class="graf graf--figure graf-after--figure"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 575px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 82.1%;"></div><img class="graf-image" data-image-id="1*m3raR3hITMXbvwIQkYDcrA.png" data-width="1310" data-height="1076" src="https://cdn-images-1.medium.com/max/800/1*m3raR3hITMXbvwIQkYDcrA.png"></div></figure><p name="bbd4" id="bbd4" class="graf graf--p graf-after--figure">继续Next就可以集成好SDK 了</p><figure name="3dee" id="3dee" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 453px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 64.7%;"></div><img class="graf-image" data-image-id="1*gADmLHdgVrn6RnNXrVuwOA.png" data-width="1228" data-height="794" src="https://cdn-images-1.medium.com/max/800/1*gADmLHdgVrn6RnNXrVuwOA.png"></div></figure><p name="1404" id="1404" class="graf graf--p graf-after--figure">选择对应的工具进入后点击installed按键就可以集成好SDK，方便好用。</p><p name="614c" id="614c" class="graf graf--p graf-after--p">而友盟呢，看SDK，下载SDK，走的是国内许多SDK厂商的老路，确实让人反感。</p><figure name="445b" id="445b" class="graf graf--figure graf-after--p graf--trailing"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 420px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 60%;"></div><img class="graf-image" data-image-id="1*et4xFAHyC0aGWzEfAZvPAQ.png" data-width="2096" data-height="1258" src="https://cdn-images-1.medium.com/max/800/1*et4xFAHyC0aGWzEfAZvPAQ.png"></div></figure></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/apps" class="p-tag">Apps</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/eee931830e5c"><time class="dt-published" datetime="2017-06-09T14:41:49.407Z">June 9, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/%E4%BD%BF%E7%94%A8crashlytics%E6%9D%A5%E8%BF%9B%E8%A1%8Capp%E8%BF%BD%E8%B8%AA-eee931830e5c" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

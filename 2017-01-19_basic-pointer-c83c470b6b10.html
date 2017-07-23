@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>basic pointer</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">basic pointer</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="ab9a" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="abcf" id="abcf" class="graf graf--p graf--leading graf--trailing">指针的妙处：1，允许代码的不同区域更加容易地共享信息；<br> 2 ，指针使得更加负责的连接型的数据成为可能，例如链表和二分树<br> #到底什么是指针？简单到凭借直觉操作Int 和double一样，一个Int的变量就只能存取单一的int类型。但是指针工作有一点不同，它不错直接存取单一的值，相反一个指针存取另外一个值的引用。<br> 指针指向的变量有时被作为尖而熟知<br> #指针遵从<br> 遵从操作允许一个指针的引用去得到它的尖的值。这个numPtr的遵从的值是42，当遵从操作使用正确，<br> 它是简单的。它仅仅存储这个尖的值。仅有的限制就是指针必须给遵从去存取有一个尖。几乎所有的指针错误都是因为发生了那一个限制。<br> 在遵从操作将工作之前它必须赋值一个尖头。<br> #NULL指针<br> 常量NULL是一个特殊的指针，指向nothing。它证明是方便地去有一个更好的定义指针值-呈现指针没有pointee的想法。它是一个运行时错误去遵从null指针<br> NULL等同于一个整数常量0，因此NULL能扮演一个布尔值类型的false。官方的C++不再使用NULL象征常量-直接用整数常量0；而在Java中使用null。<br> #指针赋值<br> 赋值运算使得他们只想同一个引用，这对于一个潜在复杂的场景而言是一个简单的原则。因此它值得复制。<br> #共享<br> 二个指针指向同一个引用称之为共享。二个或多个实体能合作地共享一个单一的内存结构是在所有计算机语言中的一个关键特点。<br> 指针操作是技术-共享是真实目的；<br> #浅复制和深拷贝<br> 分享使得在二个函数之间交流成为可能。一个函数传一个指针给有趣的值给另外一个函数，函数都能存取这个有趣的值，但是有趣的值本身不被复制，这成为复制影子；<br> 因为替代制作和发送兴趣值的一个备份，一个指针被发送，有趣的值则被分享；接受者必须理解它们有一个影子的备份，因此自从它们被分享，它们知道不能改变或者删除它；<br> 一个完整的备份被制作和发送则称之为深拷贝；深拷贝是以这样的方式的更简单的。自从每个函数改变它们的备份-没有干涉其他备份，但是深拷贝运行地更慢因为所有的备份；<br> #坏指针<br> 当一个指针第一次被分配时候，它没有pointee；pointee并未被初始化或者简单地坏的。一个遵从计算在一个坏指针上是一个严重的运行时错误；<br> 如果你足够幸运，这个遵从操作则将会崩溃或者立刻停止（java会执行这种方式）<br> 如果你不足够幸运，坏指针遵从将腐化内存的随机区域，每个指针在进行遵从操作之前必须赋值一个pointee。<br> 坏指针比较普遍，事实上，每个指针用一个坏值起步。正确的代码用一个正确到pointee的引用去重写错误值，因此指针工作正常。<br> 许多语言使得它容易去忽略这重要的一步。你仅仅必须仔细编程，如果你的代码崩溃，一个坏的指针应该是你的第一个怀疑。<br> 指针在动态语言例如perl，LISP,Java中有一些不同。当它被分配并且它被遵从操作的时候每次进行检查时，这个运行时系统设置每个指针为空，因此代码能仍然陈列指针bug。结果是它<br> 更加容易去定位和修正指针bug在动态语言中；正是因为运行时检查使得这种语言明显运行地慢-相比较C、C++而言；</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/指针和内存" class="p-tag">指针和内存</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/c83c470b6b10"><time class="dt-published" datetime="2017-01-19T01:43:38.106Z">January 19, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/basic-pointer-c83c470b6b10" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

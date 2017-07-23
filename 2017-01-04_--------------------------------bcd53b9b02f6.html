@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>你曾经试图进入一个视图控制器，这里主要是做轻量级的视图控制器。</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">你曾经试图进入一个视图控制器，这里主要是做轻量级的视图控制器。</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="a660" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="9b5e" id="9b5e" class="graf graf--p graf--leading">App 的生命周期较长，你经常性地要读代码多次，作为通常的练习我们得到视图控制器创建或者控制视图层级，我们使得控制器意识到一些关于视图布局动画的一些细节，如何填充它，响应每个事件的子视图，这使得视图控制器更加难以理解，使得非常耦合-视图被如何呈现。视图控制器是一个响应者，它的责任是响应通过用户界面生成的事件，它控制视图和事件。它不能实现视图，如果一个视图用一个表视图或者一个集合视图，那儿仅有细节。<br> 如何设计视图组件的一些tips</p><h3 name="acb5" id="acb5" class="graf graf--h3 graf-after--p">生成类给视图</h3><p name="de84" id="de84" class="graf graf--p graf-after--h3">首先给视图创建一个类，这个类维护这个视图的所有细节，并且能是一个视图控制器的抽象。这个视图的接口组成了方法去改变它的状态和一种方式去从它得到信息，这意味视图控制器不被联系起来-和视图如何实现，仅仅和它提供的特性有关系</p><pre name="e43a" id="e43a" class="graf graf--pre graf-after--p">#import &lt;UIKit/UIKit.h&gt;<br>@class MSLoginViewModel;<br>@interface MSLoginView:UIView <br>@property (strong,nonatomic) MSLoginViewModel *viewModel;<br>- (void)showAppearanceAnimation;<br>- - (void)showNoConnectionFeedback:(BOOL)shouldShow;<br>- @end<br>- @interface MSLoginViewModel:NSObject<br>- @property (strong ,nonatomic) NSString *userName;<br>- @property(strong,nonatomic) NSString* password;</pre><p name="7091" id="7091" class="graf graf--p graf-after--pre">如你所见，这里没有IBOutlets在它的界面内或者关于视图子视图的任何信息。这是因为所有这些是详细实现的，如果你把它们放在你的接口内你将用它使用的一个表视图去展示登录和密码区域的事实，如果你不想这些是因为你的设计师明天来，改变它成UITextfields 和UILabels，这种方式的视图不需要改变视图控制器就能改变</p><h3 name="4318" id="4318" class="graf graf--h3 graf-after--p">使用视图模型去包含视图呈现的信息</h3><p name="8348" id="8348" class="graf graf--p graf-after--h3">有二个字符串属性定义在视图接口中，因为你能使用视图模型作为交流工具。<br> 视图模型通过视图和视图能展示或者修改的信息去定义。视图控制器生成视图模型并且使用它想去从模型中获取的信息去填充。一旦生成实例赋值给视图，这个视图控制器也能订阅视图能使用KVO改变的任何属性，通常在ViewDidAppear（不订阅在ViewDidDisappear）</p><pre name="2b65" id="2b65" class="graf graf--pre graf-after--p">- （void)ViewDidLoad {<br> [super viewDidLoad];<br> NSString *userName = @&quot;&quot;;//从你的业务逻辑中获取<br> NSString *password = @&quot;&quot;;//从你的业务逻辑中获取<br>MSLoginModel *viewModel = [MSLoginViewModel alloc]init];<br> viewModel.userName = userName;<br> viewModel.password = password;<br> self.loginView.viewModel = viewModel;<br> }<br>- (void)viewDidAppear:(BOOL)animated<br><br>{<br><br>[super viewDidAppear:animated];<br>[self.loginView.viewModel addObserver:self forKeyPath:@&quot;password&quot; options:kNilOptions context:nil];<br><br>}<br><br>- (void)viewDidDisappear:(BOOL)animated<br><br>{<br>[super viewDidDisappear:animated];<br>[self removeObserver:self forKeyPath:@&quot;password&quot;];<br><br>}<br>-</pre><p name="6784" id="6784" class="graf graf--p graf-after--pre">这种方式当视图改变了视图模型的数据时候，如果你想视图控制器知道，你不必生成所有痛苦的代理方法，视图也不必和这个需求联系。这个视图模型的定义为你做这件事并且给你一个干净和容易的方式去有你的视图和视图控制器数据同步</p><h3 name="9ea8" id="9ea8" class="graf graf--h3 graf-after--p">在私有接口中引用你的子视图</h3><p name="38aa" id="38aa" class="graf graf--p graf-after--h3">你需要一个指向你子视图的引用，所有的标签，表视图和你生成你的界面的所有对象，所有的这些实现详情不应该给其他类可见，最好的地方定义它们是在视图的私有接口内定义这些属性</p><pre name="00b3" id="00b3" class="graf graf--pre graf-after--p">#import &quot;MSLoginView.h&quot;<br><br>interface MSLoginView()<br>@property (strong,nonatomic) IBOutlet UILabel *titleLabel;<br>@property(strong,nonatomic) IBOutlet UITableView *fieldsTableView;<br>@property(strong,nonatomic) IBOutlet UIButton *loginButton;<br>@property (strong,nonatomic) IBOutlet UIProgressView *connectionIssueProgressView;<br>@end<br>@implementation MSLoginView</pre><p name="0813" id="0813" class="graf graf--p graf-after--pre">如果你这样做，如果某天你想改变UITableView对应的二个标签和二个Textfield，你仅仅需要改变这个类，而不是视图控制器，所有的这些详情都移除了你巨大的视图控制器</p><h3 name="aa5b" id="aa5b" class="graf graf--h3 graf-after--p">使用XIBS去定义你的布局</h3><p name="1752" id="1752" class="graf graf--p graf-after--h3">XIBS是仅有的一种方式去定义你的视图而不是你的视图控制器。我认为这是一个延展的误解。XIB是一个自动生成的方式去创建我们的子视图和布局，视图控制器使用xibs去作为我们视图 的实例去呈现<br> XIBS是一个较好的方式去写更少的代码，它们是完美的定义布局，子视图在内使用，你可以用通过IBOutlets来生成的子视图的实例去连接私有界面的属性，在窗口搭建起中你能匹配这个视图的类，框架的这种方式知道它必须生成你具体的视图子类化的实例</p><h3 name="a01a" id="a01a" class="graf graf--h3 graf-after--p">从视图中使用一个委托去交流异步事件</h3><p name="ed95" id="ed95" class="graf graf--p graf-after--h3">当用户点击login按键时我们想要视图控制器知道它。视图控制器知道如何响应这个事件，这不是说视图控制器应该知道如何去登录。<br> 委托应该被定义在视图的.h文件中因为它正在定义视图能生成的事件。这个视图有一个视图控制器有责任设置的委托属性，他能通过XIB或者在ViewDidLoad中去设置（取决于你的风格）都为了测试的目的而工作</p><pre name="467f" id="467f" class="graf graf--pre graf-after--p">@protocol MSLoginViewDelegate<br>@interface MSLoginView:UIView<br>@property(strong,nonatomic) MSLoginViewModel *viewModel;<br>@property(weak,nonatomic) id&lt;MSLoginViewDelegate&gt; delegate;<br>//方法<br>@end<br>@protocol MSLoginViewDelegate&lt;NSObject&gt;<br>- (void) didTapLoginAtLoginView:(MSLoginView *) loginView;</pre><p name="45ef" id="45ef" class="graf graf--p graf-after--pre">这是完美的代替对于这类在视图控制器内可读的事件。这种方式你能在视图控制器代码的同一取悦有所有的委托方法，并不将其在viewDidLoad方法中传播，但是这不是风格的事件。你也能使用委托去在视图内核对输入的文本或数据的格式。这个视图控制器有关于系统的更多内容，有时候数据核实可以和模型联系起来</p><h3 name="7a17" id="7a17" class="graf graf--h3 graf-after--p">使用block-异步操作</h3><p name="d31f" id="d31f" class="graf graf--p graf-after--h3">视图有大量的异步操作例如展示一个动画或者询问用户确认。在这些事件内，我使用block，它可读性高，它给你在你代码内团结的感觉。<br> 一个操作能在你的视图控制器内被多次使用，在它完成时候可以对于每个事件做不同的事情</p><pre name="52e8" id="52e8" class="graf graf--pre graf-after--p">typedef BOOL&lt;^MSLoginViewConfirmationCompletion)();<br>@interface MSLoginView:UIView<br><br>- (void)showUserConfrimationWithCompletionBlock:(MSLoginViewConfirmationCompletion)completion;<br>- @end</pre><p name="49c5" id="49c5" class="graf graf--p graf-after--pre">这个策略对于测试也是有用的。你能很容易的测试</p><h3 name="a775" id="a775" class="graf graf--h3 graf-after--p">数据源在视图中而非在视图控制器中</h3><p name="0691" id="0691" class="graf graf--p graf-after--h3 graf--trailing">众所周知，视图的数据源都在控制器内，但是如果你想要改变来自UITableView（用一个标签和一个textfiled实现）的视图，你将必须更改你的视图控制器，这是一个很糟糕的方式。<br> 你也有所有的你需要在视图模型中的信息，凭什么将其委托给VC呢？<br> 表视图是来自这个视图的实现详情。<br> 你能隔离它们在不同的类-类实例，赋值视图模型给它们。这样做有二个好处：可读性和可测试性。可读是因为你包含了cell的创建和它们的配置信息在一个对象内，测试性好是因为你能测试数据源的一些部分：cell的数量，section 的数量等</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/如何将视图控制器独立到视图逻辑" class="p-tag">如何将视图控制器独立到视图逻辑</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/bcd53b9b02f6"><time class="dt-published" datetime="2017-01-04T01:25:44.575Z">January 4, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/%E4%BD%A0%E6%9B%BE%E7%BB%8F%E8%AF%95%E5%9B%BE%E8%BF%9B%E5%85%A5%E4%B8%80%E4%B8%AA%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8-%E8%BF%99%E9%87%8C%E4%B8%BB%E8%A6%81%E6%98%AF%E5%81%9A%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8-bcd53b9b02f6" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

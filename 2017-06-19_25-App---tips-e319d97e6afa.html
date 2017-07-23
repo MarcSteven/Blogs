@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>25个App性能的tips</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">25个App性能的tips</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="b82e" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h4 name="bc17" id="bc17" class="graf graf--h4 graf--leading">1，使用ARC去管理内存</h4><p name="d4f8" id="d4f8" class="graf graf--p graf-after--h4">ARC是在iOS中发布的，它帮我们做了很多事情，内存管理变得简单了很多。关于ARC的内容可以去<a href="https://developer.apple.com/library/content/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%E5%8A%A0%E6%B7%B1%E4%BA%86%E8%A7%A3%EF%BC%8C" data-href="https://developer.apple.com/library/content/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%E5%8A%A0%E6%B7%B1%E4%BA%86%E8%A7%A3%EF%BC%8C" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://developer.apple.com/library/content/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html加深了解，</a><br> 其中在Steffen Iteterheim的博客中写了8个不使用ARC的原因<br> 1，从此你对于对象的控制没有了。<br> 2，ARC还没有证明可靠<br> 3，ARC中学不到更多新鲜的玩意，对于内存管理的理解也没有学过MRC的人<br> 理解通透。<br> 4，ARC不被插入库名支持<br> 5，在使用ARC之前你仍然需要知道内存管理是如何工作的<br> 其他三个原因都是说在自己的项目中的问题导致它不喜欢用。<br> 6，转换到ARC成功后，工程崩溃<br> 7，工程已经做了一半了<br> 8，ARC在工程模板内不可用。<br> 这个博客写的很久了，不过目前ARC是潮流。</p><h4 name="4f9f" id="4f9f" class="graf graf--h4 graf-after--p">2，在适当的地方使用重用标示符</h4><p name="9ab1" id="9ab1" class="graf graf--p graf-after--h4">一个普遍的错误就是在UITableViewCell,UICollectionViewCell，甚至UITableViewHeaderFooterView 中没有设置正确的重用标示符。<br> 如果你不用它又当如何呢？<br> 如果你不,你的表视图将配置一个全新的cell去每次显示一行。这是一项昂贵的操作,肯定会影响滚动你的应用程序的性能。</p><p name="acb6" id="acb6" class="graf graf--p graf-after--p">3，尽可能设置视图不透明<br> 如果你有一个透明视图，但是视图没有透明定义，你应该设置opaque属性为yes。这是为什么呢？因为这将允许系统去以一个最佳的方式去绘画你的视图。<br> 在相对静态的屏幕中，设置这个属性没有什么大的影响。然而如果你的视图镶嵌到一个scrollview中，或作为一个复杂动画的部分，不设定这个属性将会影响App性能。可以使用Debug/color Blended Layer层选项在模拟器上看你的视图是否摄者作为透明。</p><p name="3977" id="3977" class="graf graf--p graf-after--p">4，消除大量的Xibs<br> 当你加载一个Xib文件的时候，任意图像文件都会被缓存。苹果官方文档说了当你加载一个nib‘文件的时候它包含了对于图像和声音资源的引用，nib加载代码读事实上的图像和声音到内存或者缓存，在mac OS中，图像和声音被储存在命名的缓存，因此你能在需要的地方去存储它们。在ios中，只有图像资源被储存在命名的缓存内。<br> 5，不要阻塞主线程<br> 不要做负重的任务在主线程，这是因为UIKit做了它所有的工作在主线程，例如绘画，管理触摸，响应输出。阻塞主线程将会导致你的App将会出现无响应，这是一个很容易得到1星评论的原因。许多阻塞主线程发生-当你执行一个输入输出操作去调取任务需要从额外的资源中读或者写操作。<br> 可以执行网络任务异步，如果你做另外珍贵的操作，例如执行时间计算去写和读给disk，使用GCD,或者NSOperationQueue</p><p name="f060" id="f060" class="graf graf--p graf-after--p">6,给imageView图像大小<br> 如果你将要从一个app bundle上imageView上显示一个图片的时候，确认图片和imageView是同样大小，放大图像是珍贵的，特别当你的ImageView是镶嵌到一个ScrollView中。如果你的图片是从远端服务获取，有时候你不能对尺寸有一个空值，或者你可能不能再服务器优先去下澡的时候去放大它，在类似这样的场景中，一旦完成下载你可以手动去放大它，执行在后台线程或者使用resize image<br> 7，选择正确的集合<br> <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Collections/Collections.html%E8%BF%99%E9%87%8C%E8%AF%A6%E7%BB%86%E7%9A%84%E8%AF%B4%E6%98%8E%E4%BA%86%E5%85%B7%E4%BD%93%E7%9A%84%E4%BD%BF%E7%94%A8%E3%80%82" data-href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Collections/Collections.html%E8%BF%99%E9%87%8C%E8%AF%A6%E7%BB%86%E7%9A%84%E8%AF%B4%E6%98%8E%E4%BA%86%E5%85%B7%E4%BD%93%E7%9A%84%E4%BD%BF%E7%94%A8%E3%80%82" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Collections/Collections.html这里详细的说明了具体的使用。</a><br> 8，使GZIP结合<br> 一个重要和越来越多的应用程序依赖于外部数据从远程服务器或其他外部api。在某些时候你会开发一个应用程序下载数据在XML中,JSON、HTML或其他文本格式。问题是,不能依赖网络条件时移动设备。用户可以在一个边缘网络一分钟,和一个3 g网络。无论场景中,你不想让你的用户等待!一个选项来减少文件的大小和速度的下载网络资源通过启用GZIP压缩你的服务器和你的客户。这是特别有用的文本数据,潜在的压缩比率较高。NSURLSession和AFNetwork均支持GZip<br> 9，重用和懒加载<br> 更多的视图则意味着更多的绘画，也意味着更多的CPU和内存过头，最主要的是UIScrollView中镶嵌更多的视图<br> 当用户点击一个button的时候需要显示视图，这里有二个方法去做它<br> 1，当屏幕第一次被加载的时候就去创建视图并且隐藏它，当需要的时候再去展示它。<br> 2，什么也不做知道你需要展示这个视图，然后创建视图并且立刻展示它。<br> 使用第一个方法，你消耗更多的内容，因为你立刻创建视图去在内存中持有它，直到被释放，然而当用户点击button的时候，你的App将显示更多的响应因为它仅仅需要改变视图的可见性<br> 第二个方法，有一个相反的效果，当它被要求的时候则创建视图，你消耗了更少的内存，然而当你的Button点击后则响应没有那么快。<br> 10，缓存<br> 缓存主要是远程的服务响应，图像甚至计算值，例如UITableView的行高度。<br> NSURLCache本身就支持缓存<br> 11 考虑绘画<br> 在ios中制作漂亮的button有多种方式，你能使用全尺寸的图像，或者你能使用calayer，CoreGraphics甚至使用OpenGL去绘画它。<br> 简短的历史是使用预渲染图像,这是更快,因为iOS没有创建一个图像和画形状终于驶进比屏幕上(已经创建的图像)。问题是,你需要把所有这些图像在你的应用程序的包,增加它的大小。这就是为什么使用可调整大小的图像是如此之大,你节省空间通过删除“浪费”的形象空间iOS可以重复。你也不需要为不同的元素生成不同的图像(如按钮)。但是,通过使用图像你失去的能力调整图片的代码,需要重新生成它们每一个,把它们变成一次又一次地应用。这可以是一个缓慢的过程。另一个观点是,如果你有一个动画或只是很多图片稍有变化(例如,他们可以有多个叠加颜色),你必须嵌入大量的图像、日益增长的应用程序的包的大小。总而言之,你需要考虑什么对你最重要的:画性能或应用程序的大小。一般都是重要的,所以你会使用这两种方法在相同的项目!<br> 12，处理内存警告<br> 当系统运行较低的时候，ios通知所有运行的apps。UIKIt提供了几种方式去接收这些低内存警告<br> 1，实现applicationDidReceiveMemoryWarning方法<br> 2，重写didReceiveMemoryWarning在你自定义的UIViewController子类中<br> 3，注册去接收UIApplicationDidReceiveMemoryWarningNotification<br> 如果内存警告的时候，你不处理则系统会杀死你的APP</p><p name="c064" id="c064" class="graf graf--p graf-after--p">13重用珍贵的对象<br> NSDateFormmater 和NSCalendar是比较珍贵的对象，但是经常使用它，例如从JSON响应中获取日期。</p><pre name="1da3" id="1da3" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0">- (NSDateFormatter *)formatter {<br>    static NSDateFormatter *formatter;<br>    static dispatch_once_t onceToken;<br>    dispatch_once(&amp;onceToken, ^{<br>        _formatter = [[NSDateFormatter alloc] init];<br>        _formatter.dateFormat = @&quot;EEE MMM dd HH:mm:ss Z yyyy&quot;; // twitter date format<br>    });<br>    return formatter;<br>}</code></pre><p name="13df" id="13df" class="graf graf--p graf-after--pre">14，使用sprite 表格<br> sprite表格是比较好的朋友，它使得绘画更快并且内存消耗也低<br> 15，消除再处理数据</p><p name="cccd" id="cccd" class="graf graf--p graf-after--p">许多应用要求数据从远程服务器获取信息的应用程序需要的功能。这些数据通常是在JSON或XML格式。试图使用相同的数据结构两端当请求和接收数据。为什么?在内存中以适应您的数据结构操作数据是昂贵的。例如,如果您需要在表视图中显示的数据,最好是请求和接收一个数组中的数据格式,以避免任何中间操纵数据,使它适合你使用的数据结构,在您的应用程序。同样,如果您的应用程序访问特定的值取决于键,然后你可能会想请求和接收一个键/值对字典。通过数据正确的格式,第一次你会避免很多的加工程序数据符合你选择的结构。<br> 16，选择正确的数据格式<br> 时下都已经使用restful API，数据的格式都采用JSON，XML是重量级的数据格式，只是针对十分复杂的数据而言，因为解析的过程较为繁琐已经被慢慢地遗忘。<br> 17，合适地设置背景图片<br> 像许多其他事情在iOS编码,至少有两种不同的方式将背景图像在你的观点:你可以设置你的视图的背景颜色与用户界面颜色colorWithPatternImage创建的颜色。你可以添加一个UIImageView子视图的视图。如果你有一个全尺寸的背景图像,然后你绝对应该使用UIImageView因为用户界面颜色colorWithPatternImage是创建小型模式可以重复的图像,而不是大图像的大小。使用UIImageView将节省大量的内存。</p><pre name="6410" id="6410" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0">UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;background&quot;]];<br>[self.view addSubview:backgroundView];</code></pre><p name="2a24" id="2a24" class="graf graf--p graf-after--pre">然而,如果你计划有图案的图像背景,使用较小的图像将会重复或平铺的背景填充,你应该与用户界面颜色colorWithPatternImage相反,因为它是更快地绘画和不会使用大量的内存</p><pre name="5772" id="5772" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageName:&quot;star&quot;]];</code></pre><p name="5119" id="5119" class="graf graf--p graf-after--pre">18，较少你的wed足迹<br> UIWebView是非常有用的。这是一个很容易显示网页内容,甚至创建一个应用程序的视觉方面与标准UIKit很难控制。然而,您可能会注意到,UIWebView组件可以使用在你的应用程序不一样快苹果的Safari浏览器应用的权力。这是到限制使用Webkit的硝基引擎,这档节目的特点就是JIT编译。为了获得最佳性能,你需要调整你的HTML。你应该做的第一件事就是消除尽可能多的Javascript,包括避免大型框架如jQuery。它有时可以更快与香草Javascript而不是依赖框架为你做这项工作。也采用异步加载Javascript文件的做法在可能的情况下,尤其是当他们不直接影响页面的行为,如分析脚本。最后,时刻注意你使用的图像,并保持图像的规模为目的。如前所述在本教程中,利用sprite sheet尽可能节省内存,提高速度。其中WWDC中关于“optimizing web content in UIWebView AND website on ios”中有很详细的说明<br> 19，设置阴影路径<br> 所以你需要添加一个影子一个视图,或一层。你应该如何处理呢?大多数开发人员只会QuartzCore框架添加到他们的项目,然后添加以下代码:</p><pre name="b72b" id="b72b" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">#import &lt;QuartzCore/QuartzCore.h&gt;<br><br>// Somewhere later ...<br>UIView *view = [[UIView alloc] init];<br><br>// Setup the shadow ...<br>view.layer.shadowOffset = CGSizeMake(-1.0f, 1.0f);<br>view.layer.shadowRadius = 5.0f;<br>view.layer.shadowOpacity = 0.6;</code></pre><p name="ce06" id="ce06" class="graf graf--p graf-after--pre">看起来十分容易，这个方法有一个问题，核心动画必须处理一个离屏渲染传递给第一个决定你的视图形状-在它能渲染下拉阴影之前，这是一个珍贵的操作。<br> 好的解决方案：</p><pre name="e39b" id="e39b" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">view.layer.shadowPath = [[UIBezierPath bezierPathWithRect:view.bounds] CGPath];</code></pre><p name="ba6c" id="ba6c" class="graf graf--p graf-after--pre graf--trailing">iOS不需要重新计算如何画出阴影。相反,它会使用预计算路径你通知。坏消息是,这取决于你的视图格式,它可能难以计算自己的路径。另一个问题是,你每次都需要更新阴影路径视图框架的改变<br> 20，使你的tableview最佳化<br> 通过设置重用标示符来重用cell，尽可能多的使view透明<br> 消除栅格，图像方法，离屏渲染，缓存cell的高度等<br> 21，选择正确的数据存储选项<br> 持久化选用合适的存储方式：NSUserDefaults，使用NSCoding归档，保存一个本地的SQL数据库例如SQLite，使用CoreData，还有时下最为流行的Realm来实现数据存储<br> 22，加速启动时间<br> 可以使用instrument中的timer profile来进行相关的查看，进而看那个函数执行的耗时，达到优化的目的<br> 23，使用autorelease pool<br> 关于此项苹果的官方文档中都明确说明了<a href="https://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmAutoreleasePools.html" data-href="https://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmAutoreleasePools.html" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmAutoreleasePools.html</a><br> 24缓存图像 或者不<br> imageName如果方法从匹配中的文件加载图像数据，缓存它，并且会返回对象<br> iamgeWithContentsOfFile 仅仅是加载图像，没有缓存<br> 25，尽可能地消除日期格式<br> 如果数据中有大量的数据需要转换为NSDateFormater，你需要小心了，重用NSDateFormater，具体可以看sam的博客中写的<a href="https://soffes.blog/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments" data-href="https://soffes.blog/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://soffes.blog/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments</a></p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/ios" class="p-tag">iOS</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/e319d97e6afa"><time class="dt-published" datetime="2017-06-19T14:41:06.036Z">June 19, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/25%E4%B8%AAapp%E6%80%A7%E8%83%BD%E7%9A%84tips-e319d97e6afa" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

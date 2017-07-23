@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>使UI部分代码更加简洁（Swift）</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">使UI部分代码更加简洁（Swift）</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="de71" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="418e" id="418e" class="graf graf--p graf--leading">1,一般从后端得到数据的时候都会写这样的代码<br> `</p><pre name="4f32" id="4f32" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0">let url = SWAPI.baseURL.appendingPathComponent(Endpoint.goods.rawValue)<br>        let task = self.session.dataTask(with: url) { (data, response, error) in<br>            if let data = data {<br>                do {<br>                    let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])<br>                    if let goods= SWAPI.decodeGoods(jsonObject: jsonObject) {<br>                    completion(goods, nil)<br>                    } else {<br>                    completion(nil, .decoding)<br>                    }<br>                } catch {<br>                completion(nil, .server(originalError: error))<br>                }<br>            } else {<br>            completion(nil, .server(originalError: error))<br>            }<br>        }<br>        task.resume()<br>    }<br>``</code></pre><p name="cd3a" id="cd3a" class="graf graf--p graf-after--pre">在这里，如果数据返回则会在completion块中完成，否则没有导入数据，我们用nil给一个数据或者一个错误在completion块内。<br> 当请求后我们想发生的事情就是二种：得到数据或者得到错误信息。<br> 但是事实上发生了什么呢？<br> 数据+错误，什么也没有，错误，数据<br> 要么从服务器得到一个结果，要么得到一系列错误，我们看一下UI部分的代码，这不是什么事件。我们看到了四种可能的输出，二种讲不通</p><pre name="0d85" id="0d85" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0">override func viewDidLoad() {<br>    super.viewDidLoad()<br>    apiClient.getFoods() {goods,error in<br>    if let goods = goods {<br>    //展示商品的UI<br>    if let error = error {<br>    //记录警告，很奇怪<br>    }<br>    }else if let error = error {<br>    //展示错误的UI<br>    } else{<br>    // 没有结果，继续展示错误的信息<br>    }<br>    }<br>    }</code></pre><p name="463d" id="463d" class="graf graf--p graf-after--pre">解决方案便是模型化我们服务器的交互不同，要么是一个成功对象或结果对象，要么是一个失败对象或者错误对象。<br> 使用一个框架Result就可以实现在这个场景下的解决问题：</p><pre name="53f7" id="53f7" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code u-paddingRight0 u-marginRight0">public enum Result&lt;T,Error:Swift.Error&gt;:ResultProtocol {<br>case success(T)<br>case failure(Error)<br>}<br>//T 是泛型，会更加灵活使用</code></pre><p name="8846" id="8846" class="graf graf--p graf-after--pre">一个标记关于枚举和关联值。<br> 这里有二种可能的枚举事件：成功或者失败，对于成功卫冕有一个非可选的T型结果，对于失败卫冕有一个非可选的错误对象，因此这里只有二个事件去处理</p><pre name="10c6" id="10c6" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">func getGoods(completion: @escaping ([Good]?, APIError? -&gt; Void) {<br>        let task = self.session<br>            .dataTask(with: SWAPI.baseURL.appendingPathComponent(Endpoint.goods.rawValue)) { (data, response, error) in<br>                let result = Result(data, failWith: APIError.server(originalError: error!))<br>                    flatMap { data in<br>                        Result&lt;Any, AnyError&gt;(attempt: { try JSONSerialization.jsonObject(with: data, options: []) })<br>                            .mapError { _ in APIError.decoding }<br>                    }<br>                    .flatMap { Result(SWAPI.decodeFilms(jsonObject: $0), failWith: .decoding) }<br><br>                completion(result)<br>            }<br>        }<br>        task.resume()<br>    }</code></pre><p name="5015" id="5015" class="graf graf--p graf-after--pre">2，一点点能做的布局<br> 2.1 stroyboard <br> 关于storyboard的争论一直未从停止过。当然对于多人团队开发而言，使用storyboard十分困难，一旦改变了则会有一个合并的冲突，解决它是一个很痛苦的事情。关于XIB,Storyboard，代码三者的争论，可以参考喵神的blog（<a href="https://onevcat.com/2017/04/storyboard-argue/%EF%BC%89" data-href="https://onevcat.com/2017/04/storyboard-argue/%EF%BC%89" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">https://onevcat.com/2017/04/storyboard-argue/）</a><br> 2.1 代码实现布局<br> 可以使用Cartography这个框架，使用它以漂亮的响应式代码来安装你的自动布局约束。</p><pre name="9e8f" id="9e8f" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">init() {<br>        super.init(frame: .zero)<br><br>        addSubview(tableView)<br><br>        // Autolayout: Table same size as parent<br>        constrain(tableView, self) { table, parent in<br>            table.edges == parent.edges<br>        }<br>    }</code></pre><p name="0ed2" id="0ed2" class="graf graf--p graf-after--pre">对于更为复杂的界面如下所示</p><pre name="935f" id="935f" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">private let margin: CGFloat = 16<br>    private let episodeLeftPadding: CGFloat = 8<br><br>    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {<br>        super.init(style: style, reuseIdentifier: reuseIdentifier)<br><br>        contentView.addSubview(episodeLabel)<br>        contentView.addSubview(titleLabel)<br><br>        constrain(episodeLabel, titleLabel, contentView) { episode, title, parent in<br>            episode.leading == parent.leading + margin<br>            episode.top == parent.top + margin<br>            episode.bottom == parent.bottom - margin<br><br>            title.leading == episode.trailing + episodeLeftPadding<br>            title.trailing &lt;= parent.trailing - margin<br>            title.centerY == episode.centerY<br>        }<br>    }</code></pre><p name="662c" id="662c" class="graf graf--p graf-after--pre">这样代码看起来也整洁清楚，不得不为这个框架的作者而称颂，实在是拯救了那些手写代码的程序员。<br> 2.3 视图的状态。<br> 经常会发现有些视图有三种情况：<br> 1，数据加载中<br> 2，数据已经成功加载<br> 3，如果有一个错误的类型，UI则会呈现这个错误</p><pre name="94c1" id="94c1" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">var isLoading: Bool = false {<br>        didSet {<br>            errorView.isHidden = true<br>            loadingView.isHidden = !isLoading<br>        }<br>    }<br><br>    var isError: Bool = false {<br>        didSet {<br>            errorView.isHidden = !isError<br>            loadingView.isHidden = true<br>        }<br>    }<br><br>    var items: [MovieItem]? {<br>        didSet {<br>            tableView.reloadData()<br>        }<br>    }</code></pre><p name="8566" id="8566" class="graf graf--p graf-after--pre">flag是最为普遍的一种方式来处理这个场景。当呈现的状态比我们想象的要多的时候，这真的是一件痛苦的事情。当然下面可以使用带关联值的枚举来优化</p><pre name="9041" id="9041" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">final class MasterView:UIView {<br>enum State {<br>case loading<br>case loaded(items:[GoodItem])<br>case error(message:String)<br>}<br>init(state:State) {...}</code></pre><p name="b94c" id="b94c" class="graf graf--p graf-after--pre">顺便分享一下特好用的测试HTTP/Rest 端点的开源</p><figure name="3905" id="3905" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*X2pEPc7xMaqvpSr0CTxSNg.png" alt="屏幕快照 2017-05-22 下午9.55.24" src="https://cdn-images-1.medium.com/max/800/1*X2pEPc7xMaqvpSr0CTxSNg.png"></div></figure><p name="bd8f" id="bd8f" class="graf graf--p graf-after--figure graf--trailing"><br> <a href="http://mmattozzi.github.io/cocoa-rest-client/" data-href="http://mmattozzi.github.io/cocoa-rest-client/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">http://mmattozzi.github.io/cocoa-rest-client/</a></p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/swift" class="p-tag">Swift</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/a3aa1876ec72"><time class="dt-published" datetime="2017-05-23T05:15:30.392Z">May 23, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/%E4%BD%BFui%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81%E6%9B%B4%E5%8A%A0%E7%AE%80%E6%B4%81-swift-a3aa1876ec72" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

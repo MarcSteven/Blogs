@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Charles 代理人 使用攻略</title><meta name="description" content="Charles是一个伟大的工具，可以用来调试网络接口，今天我想介绍一下关于它的一些使用技巧。"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Charles 代理人 使用攻略</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Charles是一个伟大的工具，可以用来调试网络接口，今天我想介绍一下关于它的一些使用技巧。
+</section>
+<section data-field="body" class="e-content">
+<section name="8df7" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="2ae6" id="2ae6" class="graf graf--h3 graf--leading graf--title">Charles 代理人 使用攻略</h3><p name="023b" id="023b" class="graf graf--p graf-after--h3">Charles是一个伟大的工具，可以用来调试网络接口，今天我想介绍一下关于它的一些使用技巧。</p><p name="f0fc" id="f0fc" class="graf graf--p graf-after--p">1，首先下载charles。下载地址如下，选择对应平台的软件</p><div name="b91f" id="b91f" class="graf graf--mixtapeEmbed graf-after--p"><a href="https://www.charlesproxy.com/download/" data-href="https://www.charlesproxy.com/download/" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://www.charlesproxy.com/download/"><strong class="markup--strong markup--mixtapeEmbed-strong">Download a Free Trial of Charles * Charles Web Debugging Proxy</strong><br><em class="markup--em markup--mixtapeEmbed-em">Charles Web Debugging Proxy - Official Site</em>www.charlesproxy.com</a><a href="https://www.charlesproxy.com/download/" class="js-mixtapeImage mixtapeImage mixtapeImage--empty u-ignoreBlock" data-media-id="bceb4f4f4c9dbcb60a1df3536ac2374a"></a></div><p name="7734" id="7734" class="graf graf--p graf-after--mixtapeEmbed">2，下载后的安装，点击对应的DMG文件，然后进行安装，相信使用mac电脑的用户安装不是问题，如果有问题的话可以查看下面的链接去做相应的学习</p><p name="de60" id="de60" class="graf graf--p graf-after--p">2.1 通过终端安装</p><div name="d0f2" id="d0f2" class="graf graf--mixtapeEmbed graf-after--p"><a href="https://stackoverflow.com/questions/4384409/how-to-install-a-mac-application-using-terminal" data-href="https://stackoverflow.com/questions/4384409/how-to-install-a-mac-application-using-terminal" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://stackoverflow.com/questions/4384409/how-to-install-a-mac-application-using-terminal"><strong class="markup--strong markup--mixtapeEmbed-strong">How to install a Mac application using Terminal</strong><br><em class="markup--em markup--mixtapeEmbed-em">Apple suggests that prior to submitting to the Mac application store, the installation process for Macs be tested using…</em>stackoverflow.com</a><a href="https://stackoverflow.com/questions/4384409/how-to-install-a-mac-application-using-terminal" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="95623f36457472d1b44b6a7bd75dcb45" data-thumbnail-img-id="0*ceKs0U_4ArRpML52." style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/0*ceKs0U_4ArRpML52.);"></a></div><p name="2fa4" id="2fa4" class="graf graf--p graf-after--mixtapeEmbed">2.2 视频学习安装</p><figure name="d69e" id="d69e" class="graf graf--figure graf--iframe graf-after--p"><iframe src="https://www.youtube.com/embed/xrNcLf561XA?feature=oembed" width="700" height="393" frameborder="0" scrolling="no"></iframe></figure><p name="c614" id="c614" class="graf graf--p graf-after--figure">2.3 从AppStore下载进行相应的安装，当然因为charles没有在AppStore上架。</p><p name="cdb5" id="cdb5" class="graf graf--p graf-after--p">3，Charles的用途</p><p name="4c45" id="4c45" class="graf graf--p graf-after--p">Charles is a web proxy (<a href="https://www.charlesproxy.com/documentation/additional/http-proxy/" data-href="https://www.charlesproxy.com/documentation/additional/http-proxy/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">HTTP Proxy</a> / <a href="https://www.charlesproxy.com/documentation/additional/http-monitor/" data-href="https://www.charlesproxy.com/documentation/additional/http-monitor/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">HTTP Monitor</a>) that runs on your own computer. Your web browser (or any other Internet application) is then configured to access the Internet through Charles, and Charles is then able to record and display for you all of the data that is sent and received.</p><p name="78f5" id="78f5" class="graf graf--p graf-after--p">In Web and Internet development you are unable to see what is being sent and received between your web browser / client and the server. Without this visibility it is difficult and time-consuming to determine exactly where the fault is. Charles makes it easy to see what is happening, so you can quickly diagnose and fix problems.</p><p name="7b6a" id="7b6a" class="graf graf--p graf-after--p">Charles makes debugging quick, reliable and advanced; saving you time and frustration!</p><p name="24f3" id="24f3" class="graf graf--p graf-after--p">翻译过来的话大概是这样的</p><p name="d9fc" id="d9fc" class="graf graf--p graf-after--p">它是一个web代理人-在你电脑端运行。你的网络浏览器通过charles来进入网络，charles然后能路线并且呈现你发送和接收的数据。在web和网络开发中，你不能在你的web浏览器之间看发送了什么接收什么。没有可见性它是困难和耗时地去决定错误在哪里，charles使得容易看到发生了什么，因此你能迅速的捕捉并且修复问题。</p><p name="2c0b" id="2c0b" class="graf graf--p graf-after--p">确实很牛逼的工具，在这里要感谢开发这个工具的开发团队，给开发者带来了福音。</p><p name="0265" id="0265" class="graf graf--p graf-after--p">安装完毕后打开Charles，点击preference，选择viewer，去除combine request and response 勾选，点击OK</p><figure name="6e96" id="6e96" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 566px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 80.9%;"></div><img class="graf-image" data-image-id="1*mU_nLj7SaWF845a2SXXBxw.png" data-width="1164" data-height="942" src="https://cdn-images-1.medium.com/max/800/1*mU_nLj7SaWF845a2SXXBxw.png"></div></figure><p name="deec" id="deec" class="graf graf--p graf-after--figure">点击Ok,重启charles。</p><p name="3f79" id="3f79" class="graf graf--p graf-after--p">点击proxy，去除mac OS proxy，然后点击proxy setting</p><figure name="a9ec" id="a9ec" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 542px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 77.4%;"></div><img class="graf-image" data-image-id="1*9ljHXxAGxRmsbc9080IeGg.png" data-width="1106" data-height="856" src="https://cdn-images-1.medium.com/max/800/1*9ljHXxAGxRmsbc9080IeGg.png"></div></figure><p name="699f" id="699f" class="graf graf--p graf-after--figure">然后点击help中的local ip来查看对应的ip地址</p><figure name="4717" id="4717" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 403px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 57.599999999999994%;"></div><img class="graf-image" data-image-id="1*RjHm-FdNUL_NOw_GDUv5JQ.png" data-width="962" data-height="554" src="https://cdn-images-1.medium.com/max/800/1*RjHm-FdNUL_NOw_GDUv5JQ.png"></div></figure><p name="f7ca" id="f7ca" class="graf graf--p graf-after--figure">然后，进入iPhone的设置中，选择wifi，点击最右边进入设置页面，选择HTTP代理，手动设置好ip地址（必须和电脑ip一样），端口填写8888</p><figure name="7913" id="7913" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 1245px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 177.89999999999998%;"></div><img class="graf-image" data-image-id="1*leF7Z_h3oHHY9eUE7e-wBg.jpeg" data-width="750" data-height="1334" src="https://cdn-images-1.medium.com/max/800/1*leF7Z_h3oHHY9eUE7e-wBg.jpeg"></div></figure><p name="c6c8" id="c6c8" class="graf graf--p graf-after--figure">然后charles会有个弹出窗，点击allow即可。</p><p name="cacd" id="cacd" class="graf graf--p graf-after--p">打开iPhone safari浏览器，输入charlesproxy.com/getssl,然后会弹出一个install安装框，点击install</p><figure name="6b7e" id="6b7e" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 1245px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 177.89999999999998%;"></div><img class="graf-image" data-image-id="1*qRiut7Aj_F-BXN0i1u4Zdw.jpeg" data-width="750" data-height="1334" src="https://cdn-images-1.medium.com/max/800/1*qRiut7Aj_F-BXN0i1u4Zdw.jpeg"></div></figure><p name="18ea" id="18ea" class="graf graf--p graf-after--figure">最后你就可以看到所有的在iPhone上的请求了，如图所示</p><figure name="f637" id="f637" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 380px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 54.300000000000004%;"></div><img class="graf-image" data-image-id="1*97-8GIOJWoKIm8xQWAnX1g.png" data-width="2346" data-height="1274" src="https://cdn-images-1.medium.com/max/800/1*97-8GIOJWoKIm8xQWAnX1g.png"></div></figure><p name="24b0" id="24b0" class="graf graf--p graf-after--figure">Ok,great ,all is over ….</p><p name="2621" id="2621" class="graf graf--p graf-after--p graf--trailing">Thank for your reading …</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/ios-app-development" class="p-tag">iOS App Development</a></p><p>By <a href="https://medium.com/@ZhaoPink" class="p-author h-card">Marc Steven</a> on <a href="https://medium.com/p/9859ae92d039"><time class="dt-published" datetime="2017-07-04T17:13:29.884Z">July 4, 2017</time></a>.</p><p><a href="https://medium.com/@ZhaoPink/charles-%E4%BB%A3%E7%90%86%E4%BA%BA-%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-9859ae92d039" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>

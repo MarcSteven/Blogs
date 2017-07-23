@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>让tableview滑动更棒</title><meta name="description" content="什么是tableview呢？在iOS开发中它无时无刻不守护着你我，因为它的存在让人感觉很亲切……"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">让tableview滑动更棒</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+什么是tableview呢？在iOS开发中它无时无刻不守护着你我，因为它的存在让人感觉很亲切……
+</section>
+<section data-field="body" class="e-content">
+<section name="3df4" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="4311" id="4311" class="graf graf--p graf--leading">让tableview滑动更棒</p><p name="ebbf" id="ebbf" class="graf graf--p graf-after--p">什么是tableview呢？在iOS开发中它无时无刻不守护着你我，因为它的存在让人感觉很亲切……</p><p name="955f" id="955f" class="graf graf--p graf--empty graf-after--p"><br></p><p name="84e4" id="84e4" class="graf graf--p graf-after--p">1,不要实现数据绑定在cell forRow, 因为此时屏幕上没有cell，应该在WillDisplayCell：forRowAtIndexPath</p><p name="d66f" id="d66f" class="graf graf--p graf-after--p">。</p><p name="b000" id="b000" class="graf graf--p graf-after--p">2，如果你的上下文因为一些特殊的原因要求动态的高度，你或许需要不断变化的滑动变得更加容易。众所周知，UITableView是UISCroll的子类，使得用户交互的真实区域比可见的更广，任何UISCrollView的实例使用contentSize，contentOffset和许多其他程序正确的rect给用户的东西。但是UITable呢，UITableView没有同时持有一个cell的实例，恰恰相反，仅仅被要求的cell被呈现给用户。因此UITableView怎么知道它的contentSize？它仅仅通过所有cell高度的和来计算.最容易犯的最大的错误就是那样之后用bound数据去去查询它们的高度来布局初始化的cell实例。如果你想提高滑动的性能，你将不能用这样的方式去计算cell的高度，这样做的结果将十分慢，原来60fps将会降到15–20fps, 你的滑动将会变得低速并且落后。如果你不想有这样的效果，基于传递的宽度和呈现的数据用类方法去返回高度，这是cell的适配器。自从iOS8以后，我们能不用事先提及的方法在UITableView。为了获得这个效果，你或许会用自动布局和行高变量去设置。UITableViewAutomationDimension。但我强烈推荐你不要那么做，不建议你采用复杂的数学计算去定义这cell的高度，如果可能除法，乘法，减法。但是自动布局怎么样呢？它真的和你说的一样慢？ 或许你将会惊讶但是这是事实。如果你想看到完美的流畅的滑动，你有更多的子视图，自动布局工作地越慢。</p><p name="20dc" id="20dc" class="graf graf--p graf-after--p">自动布局对应的低性能的原因在约束处理系统 -命名为Gassowary 隐藏在引擎罩下面，你必须布局的子视图和你必须处理的约束，你花费返回cell的时间会更多</p><p name="b8c6" id="b8c6" class="graf graf--p graf-after--p">什么会更快一些呢？用小数子的值去执行一些基于数学的计算，或者解决大量的线性均等或者非均等。现在想象一下用户想滑动得更快，对于每个单元格自动约束执行了所有的这些疯狂的计算。</p><p name="1eb7" id="1eb7" class="graf graf--p graf-after--p">正确的方法去用内建的工具去使得UITableView最优化</p><p name="fa42" id="fa42" class="graf graf--p graf-after--p">1，重用cell实例 ，对于特定类型的cell你应该仅有一个实例，没有更多</p><p name="2760" id="2760" class="graf graf--p graf-after--p">2，不要增加数据绑定在CellForRowAtIndexPath，使用WillDispalyCell代替</p><p name="e3ec" id="e3ec" class="graf graf--p graf-after--p">3，更快地计算深一层的cell高度</p><p name="bc4a" id="bc4a" class="graf graf--p graf-after--p">以上的这些不足以使得真正地流畅，特别是它变得引人注目-当你有任务去实现复杂的cell-带有大量的栅格，视图，交互元素，一些装饰性的元素甚至更多，在UITableViewCell内有更多的视图，更多的FPS衰减将会存在-滑动时。但是现在使用手动布局和最优化高度计算，问题不是布局，而是渲染</p><p name="5675" id="5675" class="graf graf--p graf-after--p">让我们来将注意力集中在UIView 的属性上-透明度 -它帮助绘画系统去定义视图是否转换。如果没有，当渲染这个视图和增加性能时，绘画 系统将会做一些最优化。</p><p name="8ebd" id="8ebd" class="graf graf--p graf-after--p">我们需要性能，用户或许滑动表十分集中，用滑动到top特性，他们不必有最新的iphone因此cell必须渲染非常快，非常快比一般的视图</p><p name="d47e" id="d47e" class="graf graf--p graf-after--p">最慢的渲染操作就是 混合。它用设备GPU支持去执行自从这个设备准确地为旋绕而被开发</p><p name="3ec2" id="3ec2" class="graf graf--p graf-after--p">如你猜想的那样，这个方法去提高性能是渲染操作的数量的锐减，但是在减少一些事情之前你应该找到它。</p><p name="d290" id="d290" class="graf graf--p graf--empty graf-after--p"><br></p><p name="1a16" id="1a16" class="graf graf--p graf-after--p"> 使得渲染操作最佳化的关键在于加载CPU和GPU的均衡</p><p name="40df" id="40df" class="graf graf--p graf-after--p">1，减少无用渲染的执行区域，不要使用透明背景，检查这个使用iOS模拟器或者instruments，如果你能做那个栅格将会无渲染做得更好</p><p name="df65" id="df65" class="graf graf--p graf-after--p">2，执行代码最佳化去获取CPU和GPU加载的平衡。你应该已经清楚知道哪部分渲染是由GPU来完成，哪部分是由CPU执行：GPU执行全部加载，CPU则保持慢加载</p><p name="dbf8" id="dbf8" class="graf graf--p graf-after--p">3，对于特定的cell写特定的代码</p><p name="4323" id="4323" class="graf graf--p graf-after--p">像素寻找</p><p name="db40" id="db40" class="graf graf--p graf-after--p">每个物理像素都有三个色的子像素 -红绿蓝</p><p name="ec66" id="ec66" class="graf graf--p graf-after--p">在一个完美的世界里，屏幕的点总是被通过物理像素的整数坐标处理。但是在现实的世界里，它或许是浮点数。例如。或许X是0.24，从此刻iOS将执行子像素渲染</p><p name="b1bc" id="b1bc" class="graf graf--p graf-after--p">这个技术讲得通当你申请目录的指定类型，但是通过设计来画流畅的线条时没有必要。如果你所有的流畅的线条通过子像素渲染来渲染-将不可见，引起你通过设计而得到的线流畅），你使得iOS做了不必要的工作，你将得到FPS递减</p><p name="a3be" id="a3be" class="graf graf--p graf-after--p">如何用不必要的子像素反混淆来引来这个问题？许多频繁发生的实践是计算代码的视图坐标-变成浮点或者不准确的图像asset，例如你有一个60*61的图像用60*60来在retina 显示上代替</p><p name="1191" id="1191" class="graf graf--p graf-after--p">如先前一样，减少一些事情之前我们应该找到它。跑你的应用选择menu选项 color misaligned image在调试菜单中.</p><p name="895f" id="895f" class="graf graf--p graf-after--p">在这个时候这有二个高亮的区域 -执行子像素渲染 和黄色 -渲染的图像尺寸是和他们在的区域没有对齐？</p><p name="bae6" id="bae6" class="graf graf--p graf-after--p">如何在发生的代码中找到那个地方呢？我总是使用局部定义绘画来手动布局，因为我通常找到它没有问题。如果你用自动布局，我真的同情你</p><p name="1005" id="1005" class="graf graf--p graf-after--p">通常而言，去解决这个你简单地应该使用ceil floors and cgrectintegral去圆你的坐标，这就是所有的</p><p name="8525" id="8525" class="graf graf--p graf-after--p">通过查找结果，以下建议</p><p name="51ad" id="51ad" class="graf graf--p graf-after--p">1，执行所有像素相关数据的圆：点坐标，UIView的高度和宽度还有其他</p><p name="f803" id="f803" class="graf graf--p graf-after--p">2，追踪你的图标资源：图片必须最佳用pixel，当你在Retina屏上展示时，它将会用不必要的反锯齿去做</p><p name="6aa8" id="6aa8" class="graf graf--p graf-after--p">3，周期性地用这个问题去再检查你的场景</p><p name="5ff0" id="5ff0" class="graf graf--p graf-after--p">异步UI</p><p name="c947" id="c947" class="graf graf--p graf-after--p">每个应用带有中等等级和以上必须用自定义媒体目录的单元格，text 图像，动画，设置有时候视频</p><p name="f656" id="f656" class="graf graf--p graf-after--p">所有这些东西都是被装饰的，代表人的移动图标是用脚的，文本是有标签的，用户名等等</p><p name="4f03" id="4f03" class="graf graf--p graf-after--p">我们对于尽可能快的返回cell时有想法的，在这点上我们遇到了一些困难 ：ClipsToBounds是满的，图像应该从网络加载，标签需要以字符串的形式去放置，很多其他的。</p><p name="5e9e" id="5e9e" class="graf graf--p graf-after--p">如果你执行这些在主线程中，返回cell将不会很快</p><p name="6e27" id="6e27" class="graf graf--p graf-after--p">加载图片在后台，在同样的地方圆角，然后负责处理的图片给UIImageView</p><p name="401b" id="401b" class="graf graf--p graf-after--p">立刻显示文本，但是在后台放置标签然后刷新用属性字符串显示的文本</p><p name="f13b" id="f13b" class="graf graf--p graf-after--p">在你的cell里，特定的行为依赖于特定的目录，但是主要的想法是在后台执行大量的操作，它或许不仅是网络代码，你应该用instruments去发现他们中的所有</p><p name="f80f" id="f80f" class="graf graf--p graf-after--p">记着关于需要很快的返回cell</p><p name="d4e9" id="d4e9" class="graf graf--p graf-after--p">有时候我们以上所有的技术都做了仍然没有帮助</p><p name="7832" id="7832" class="graf graf--p graf-after--p">当GPU仍然没有用它的工作处理时，当cell那有大量的目录，当你应该意识到用CAlayer的动画，它真的难以用drawRect实现</p><p name="6546" id="6546" class="graf graf--p graf-after--p">在这样的事件中我们应该渲染所有轻量级的在后台，除了当用户滑动非常快的时候它对于增加FPS很有效果</p><p name="39d2" id="39d2" class="graf graf--p graf-after--p">实现异步UI的行为</p><p name="7796" id="7796" class="graf graf--p graf-after--p">1，查找不允许你很快返回cell的渲染瓶颈</p><p name="63ac" id="63ac" class="graf graf--p graf-after--p">2，移除操作到后台线程然后在主线程上数显呈现的目录</p><p name="3529" id="3529" class="graf graf--p graf-after--p">3，最后的招数是为了异步显示功能安装你的CALayer-即使它是简单的文本或者图像，这将帮助你增加FPS</p><p name="84db" id="84db" class="graf graf--p graf--empty graf-after--p graf--trailing"><br></p></div></div></section>
+</section>
+<footer><p><a href="https://medium.com/p/3e38ffd82ad">View original.</a></p><p>Exported from <a href="https://medium.com">Medium</a> on July 23, 2017.</p></footer></article>
+
+</body></html>
