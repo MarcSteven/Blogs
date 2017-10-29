@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Enum to construct the UI Element</title><meta name="description" content="Enum is great in swift ,so strong …."><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Enum to construct the UI Element</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Enum is great in swift ,so strong ….
+</section>
+<section data-field="body" class="e-content">
+<section name="1387" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="a730" id="a730" class="graf graf--h3 graf--leading graf--title">Enum to construct the UI Element</h3><p name="c1f7" id="c1f7" class="graf graf--p graf-after--h3">Enum is great in swift ,so strong ….</p><p name="1385" id="1385" class="graf graf--p graf-after--p">In some scene ,we always write these code as below:</p><p name="05c8" id="05c8" class="graf graf--p graf-after--p">class LoginViewController:UIViewController {</p><p name="b074" id="b074" class="graf graf--p graf-after--p">//MARK: -properties</p><p name="eb52" id="eb52" class="graf graf--p graf-after--p">let userLabel:UILabel = {</p><p name="51db" id="51db" class="graf graf--p graf-after--p">let label = UILabel()</p><p name="4a19" id="4a19" class="graf graf--p graf-after--p">label.text = “”</p><p name="2854" id="2854" class="graf graf--p graf-after--p">return label</p><p name="f68d" id="f68d" class="graf graf--p graf-after--p">}()</p><p name="1a76" id="1a76" class="graf graf--p graf-after--p">override fun viewDidLoad() {</p><p name="8fa4" id="8fa4" class="graf graf--p graf-after--p">super.viewDidLoad()</p><p name="a77c" id="a77c" class="graf graf--p graf-after--p">}</p><p name="4947" id="4947" class="graf graf--p graf-after--p">}</p><p name="df87" id="df87" class="graf graf--p graf-after--p">The issue constructed here .It’s just one UI Element,if there are more ,we always need write these code repeatedly ….</p><p name="d736" id="d736" class="graf graf--p graf-after--p">Here we can use the Design pattern — Factory ……</p><p name="c032" id="c032" class="graf graf--p graf-after--p">import UIKit</p><p name="9250" id="9250" class="graf graf--p graf-after--p">/// button factory to construct the standard button</p><p name="9702" id="9702" class="graf graf--p graf-after--p">///</p><p name="a104" id="a104" class="graf graf--p graf-after--p">/// — buttonWithImage: the image of button</p><p name="4e0a" id="4e0a" class="graf graf--p graf-after--p">/// — sizeToFit:Bool: sizeToFit to make it display well</p><p name="85dd" id="85dd" class="graf graf--p graf-after--p">enum ButtonFactory {</p><p name="6214" id="6214" class="graf graf--p graf-after--p">case buttonWithImage(image:UIImage,cornerRadius:CGFloat,target:Any,selector:(Selector),sizeToFit:Bool)</p><p name="a919" id="a919" class="graf graf--p graf-after--p">var new:UIButton {</p><p name="15a3" id="15a3" class="graf graf--p graf-after--p">switch self {</p><p name="600e" id="600e" class="graf graf--p graf-after--p">case .buttonWithImage(let image, let cornerRadius,let target,let selector ,let sizeToFit):</p><p name="9eca" id="9eca" class="graf graf--p graf-after--p">return createButtonWithImage(image: image, cornerRadius: cornerRadius, target: target, selector: selector, sizeToFit: sizeToFit)</p><p name="d028" id="d028" class="graf graf--p graf-after--p">//Note:you can add the button with image based on your requirement here</p><p name="f0dd" id="f0dd" class="graf graf--p graf-after--p">}</p><p name="b52c" id="b52c" class="graf graf--p graf-after--p">}</p><p name="0092" id="0092" class="graf graf--p graf-after--p">fileprivate func createButtonWithImage(image:UIImage,cornerRadius:CGFloat,target:Any,selector:(Selector),sizeToFit:Bool) -&gt;UIButton {</p><p name="75f5" id="75f5" class="graf graf--p graf-after--p">let button = UIButton()</p><p name="af1b" id="af1b" class="graf graf--p graf-after--p">button.setImage(image, for: .normal)</p><p name="6f1b" id="6f1b" class="graf graf--p graf-after--p">button.addTarget(target, action: selector, for: .touchUpInside)</p><p name="fa2e" id="fa2e" class="graf graf--p graf-after--p">button.translatesAutoresizingMaskIntoConstraints = false</p><p name="eec3" id="eec3" class="graf graf--p graf-after--p">button.layer.cornerRadius = cornerRadius</p><p name="2812" id="2812" class="graf graf--p graf-after--p">button.clipsToBounds = true</p><p name="0ac2" id="0ac2" class="graf graf--p graf-after--p">if sizeToFit {</p><p name="571a" id="571a" class="graf graf--p graf-after--p">button.sizeToFit()</p><p name="64bb" id="64bb" class="graf graf--p graf-after--p">}</p><p name="cd52" id="cd52" class="graf graf--p graf-after--p">return button</p><p name="c9e7" id="c9e7" class="graf graf--p graf-after--p">}</p><p name="f651" id="f651" class="graf graf--p graf-after--p">}</p><p name="6442" id="6442" class="graf graf--p graf-after--p">enum LabelFactory {</p><p name="1dc8" id="1dc8" class="graf graf--p graf-after--p">case standardLabel(text:String,textColor:UIColor,fontStyle:UIFontTextStyle,textAlignment:NSTextAlignment?,sizeToFit:Bool,adjustToFit:Bool)</p><p name="3d14" id="3d14" class="graf graf--p graf-after--p">var new:UILabel {</p><p name="fac4" id="fac4" class="graf graf--p graf-after--p">switch self {</p><p name="18b5" id="18b5" class="graf graf--p graf-after--p">case .standardLabel(let text, let textColor, let fontStyle, let textAlignment, let sizeToFit, let adjustToFit):</p><p name="d4f6" id="d4f6" class="graf graf--p graf-after--p">return createStandardLabel(text: text, textColor: textColor, fontStyle: fontStyle, textAlignment: textAlignment, sizeToFit: sizeToFit, adjustToFit: adjustToFit)</p><p name="cd82" id="cd82" class="graf graf--p graf-after--p">}</p><p name="05a0" id="05a0" class="graf graf--p graf-after--p">}</p><p name="3dad" id="3dad" class="graf graf--p graf-after--p">/// Construct standard label</p><p name="8aed" id="8aed" class="graf graf--p graf-after--p">///</p><p name="9be4" id="9be4" class="graf graf--p graf-after--p">/// — Parameters:</p><p name="6fd1" id="6fd1" class="graf graf--p graf-after--p">/// — text: text of label</p><p name="1d87" id="1d87" class="graf graf--p graf-after--p">/// — textColor: textColor</p><p name="2fd8" id="2fd8" class="graf graf--p graf-after--p">/// — fontStyle: fontStyle</p><p name="dcaa" id="dcaa" class="graf graf--p graf-after--p">/// — textAlignment: textAlignment</p><p name="3ab0" id="3ab0" class="graf graf--p graf-after--p">/// — sizeToFit: sizeToFit based on the content of label</p><p name="b842" id="b842" class="graf graf--p graf-after--p">/// — adjustToFit: adjustToFit to make it great</p><p name="ca3e" id="ca3e" class="graf graf--p graf-after--p">/// — Returns: &lt;#return value description#&gt;</p><p name="5f9a" id="5f9a" class="graf graf--p graf-after--p">fileprivate func createStandardLabel(text:String,textColor:UIColor,fontStyle:UIFontTextStyle,textAlignment:NSTextAlignment?,sizeToFit:Bool,adjustToFit:Bool) -&gt;UILabel{</p><p name="7a2d" id="7a2d" class="graf graf--p graf-after--p">let label = UILabel()</p><p name="93c6" id="93c6" class="graf graf--p graf-after--p">label.translatesAutoresizingMaskIntoConstraints = false</p><p name="8d55" id="8d55" class="graf graf--p graf-after--p">label.adjustsFontSizeToFitWidth = adjustToFit</p><p name="de36" id="de36" class="graf graf--p graf-after--p">label.text = text</p><p name="7bef" id="7bef" class="graf graf--p graf-after--p">label.font = UIFont.preferredFont(forTextStyle: fontStyle)</p><p name="625c" id="625c" class="graf graf--p graf-after--p">label.textAlignment = .left</p><p name="2d98" id="2d98" class="graf graf--p graf-after--p">label.textColor = textColor</p><p name="f9c9" id="f9c9" class="graf graf--p graf-after--p">if sizeToFit {</p><p name="c792" id="c792" class="graf graf--p graf-after--p">label.sizeToFit()</p><p name="e61e" id="e61e" class="graf graf--p graf-after--p">}</p><p name="b2b7" id="b2b7" class="graf graf--p graf-after--p">return label</p><p name="5a31" id="5a31" class="graf graf--p graf-after--p">}</p><p name="e76e" id="e76e" class="graf graf--p graf-after--p">}</p><p name="5ab9" id="5ab9" class="graf graf--p graf-after--p">There is another way to do it —<strong class="markup--strong markup--p-strong"> init with closure .</strong></p><pre name="ec4f" id="ec4f" class="graf graf--pre graf-after--p">@warn_unused_result<br>public func Init&lt;<strong class="markup--strong markup--pre-strong">Type</strong>&gt;(value : <strong class="markup--strong markup--pre-strong">Type</strong>, @noescape block: (object: <strong class="markup--strong markup--pre-strong">Type</strong>) -&gt; Void) -&gt; <strong class="markup--strong markup--pre-strong">Type</strong><br>{<br>    block(object: value)<br>    return value<br>}</pre><p name="42bf" id="42bf" class="graf graf--p graf-after--pre graf--trailing">So we can do it well .But compared with the first method,there are more codes in the second method…..You must obey the rule -Don’t repeat yourself.Simply it is called DRY Rule.As a coder we must avoid this issue.</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/swift" class="p-tag">Swift</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/aa1a8881c6df"><time class="dt-published" datetime="2017-08-04T13:21:17.842Z">August 4, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/enum-to-construct-the-ui-element-aa1a8881c6df" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

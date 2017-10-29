@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>intrinstic content size 的黑魔法</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">intrinstic content size 的黑魔法</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="2f89" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h4 name="a9b4" id="a9b4" class="graf graf--h4 graf--leading">它是什么？</h4><p name="19d1" id="19d1" class="graf graf--p graf-after--h4">一些视图有content但是真的没有任何推荐的尺寸。例如像带一个背景色的UIView，这个颜色并不在乎或者关心它的尺寸是多大</p><figure name="a37e" id="a37e" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*u0uNhKX4jkeq2a_KFFbYyQ.png" alt="屏幕快照 2017-07-30 下午1.42.30" src="https://cdn-images-1.medium.com/max/800/1*u0uNhKX4jkeq2a_KFFbYyQ.png"></div></figure><p name="e809" id="e809" class="graf graf--p graf-after--figure">但是一些content有一个推荐的size。<br> 如果你呈现一个图像120 pix的，它能被放大或缩减到其他大小，但是它有一个本身的大小（120 * 120），这对于图像而言十分明显，但是对于一些类型的conten而言，也尤为重要</p><figure name="75a5" id="75a5" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*t6eMNEHm-1Ul8g7SxIFGLg.png" alt="屏幕快照 2017-07-30 下午1.44.56" src="https://cdn-images-1.medium.com/max/800/1*t6eMNEHm-1Ul8g7SxIFGLg.png"></div></figure><pre name="e4ab" id="e4ab" class="graf graf--pre graf-after--figure"><code class="markup--code markup--pre-code">例如你有一个label带有文本（有字体大小），但是label有本身的大小将去呈现所有的它的content<br>##Hugging and Compression 拥抱和压缩<br>说简单点，就是离我近一些，离我远一点的意思。<br>如果自动布局系统正在尝试标定一个视图的大小与它的content的本身大小不同。<br>这里有二种概念要演示<br>Content hugging 和compression resistance</code></pre><h4 name="f2e4" id="f2e4" class="graf graf--h4 graf-after--pre">content Hugging</h4><pre name="0bed" id="0bed" class="graf graf--pre graf-after--h4"><code class="markup--code markup--pre-code">不想grow<br>![屏幕快照 2017-07-30 下午1.56.31](media/15013931396879/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-30%20%E4%B8%8B%E5%8D%881.56.31.png)</code></pre><p name="7275" id="7275" class="graf graf--p graf-after--pre">content Hugging定义了期望一个视图不再比它的本身size更大<br> 考虑content hugging ,视图的边缘不想让其走。</p><h4 name="73f5" id="73f5" class="graf graf--h4 graf-after--p">原则：</h4><p name="331a" id="331a" class="graf graf--p graf-after--h4">1，宽度小于或者等于本身的宽度<br> 2，高度小于或者等于本身的高度</p><h4 name="13f1" id="13f1" class="graf graf--h4 graf-after--p">content Compression Resistance：不想压缩</h4><p name="3ce4" id="3ce4" class="graf graf--p graf-after--h4">它定义了期望视图不比它本身 的size小</p><figure name="7fe6" id="7fe6" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*i14eGjHrsondUwKaeyzhyg.png" alt="屏幕快照 2017-07-30 下午2.03.10" src="https://cdn-images-1.medium.com/max/800/1*i14eGjHrsondUwKaeyzhyg.png"></div></figure><p name="7aec" id="7aec" class="graf graf--p graf-after--figure"><br> 有本身大小的每个视图有四个属性在它上面定义。</p><h4 name="e964" id="e964" class="graf graf--h4 graf-after--p">原则</h4><p name="35b0" id="35b0" class="graf graf--p graf-after--h4">1，宽度大于或者等于本身的宽度<br> 2，高度大于或者等于本身的高度<br> 3，在垂直方向，相同的申请对于高度，创建了第三个和第四个原则</p><h4 name="2403" id="2403" class="graf graf--h4 graf-after--p">优先级</h4><p name="cf77" id="cf77" class="graf graf--p graf-after--h4">现在举个例子，如果你有100pix宽度可用，并且二个label使用本身的size去边靠边，总共大于100pixels，你将不能以它们本身的size去完全显示它们。</p><figure name="732d" id="732d" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*4QJLmbpbxf9DhN_qW0cZKQ.png" alt="屏幕快照 2017-07-30 下午2.13.02" src="https://cdn-images-1.medium.com/max/800/1*4QJLmbpbxf9DhN_qW0cZKQ.png"></div></figure><p name="6f8d" id="6f8d" class="graf graf--p graf-after--figure">这个时候，就需要考虑优先级了。在这个例子中，我们需要使用的是水平compression 阻尼优先级去决定那个label一个减小它的宽度。</p><pre name="cb95" id="cb95" class="graf graf--pre graf-after--p graf--trailing"><code class="markup--code markup--pre-code">这是仅有的本身content size的部分约束（你所能控制的）你能设置水平方向或者垂直方向的compression resistance 还有content hugging 约束。<br>### 本身content size<br>size去匹配你的content<br>如果我没有使用text，但是使用的是一个图片<br>本身contentsize对于button是比较后则那个药的，因为当你tap在那个button上的时候，button的size也将决定这个hit对象的大小，因此这或许是事情*本身content 的size是太小）你想hit 目标被更大。Button真的应该有一个最小值（在44 * 44 的高度内）因此，如果你的Button内的文字，你明白的，你仅仅匹配它以30points，然后为了制造一个合适的hit target你或许需要指定button的大小比它本身的content size更大。<br>对于label而言，默认的背景色是clear，因此很多时候它真的不用关心很多，或者你不能真正地告诉一个label是否被指定大小比它的本身的content大小更大，除了文本被展示的地方外。因此它起初这个标签被指定大小后是不明显的（和屏幕宽度一致），或者如果你有文本居中，它足够大。当然你有一个背景色，很多时候你可以采用这个特性来观察label边到边之间。</code></pre></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/intrinsic-content-size" class="p-tag">Intrinsic Content Size</a>, <a href="https://medium.com/tag/ios" class="p-tag">iOS</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/fe40b3eccb45"><time class="dt-published" datetime="2017-07-30T07:02:55.642Z">July 30, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/intrinstic-content-size-%E7%9A%84%E9%BB%91%E9%AD%94%E6%B3%95-fe40b3eccb45" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

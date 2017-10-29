@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>How to solve the issue of memory using MyEclipse</title><meta name="description" content="Now I became an Java developer, there’re lots of IDE tool to choose .I prefer to IntelliJ IDEA.But my teams choose MyEclipse."><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">How to solve the issue of memory using MyEclipse</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Now I became an Java developer, there’re lots of IDE tool to choose .I prefer to IntelliJ IDEA.But my teams choose MyEclipse.
+</section>
+<section data-field="body" class="e-content">
+<section name="3511" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="c5a9" id="c5a9" class="graf graf--h3 graf--leading graf--title">How to solve the issue of memory using MyEclipse</h3><p name="e187" id="e187" class="graf graf--p graf-after--h3">Now I became an Java developer, there’re lots of IDE tool to choose .I prefer to IntelliJ IDEA.But my teams choose MyEclipse.</p><p name="f24f" id="f24f" class="graf graf--p graf-after--p">But when I construct my first project .And later the issue gave me a warning.Your computer is out of memory.</p><p name="7341" id="7341" class="graf graf--p graf-after--p">OMG,What???Unbelievable !!!As I never met this issue since use it as my development tool.</p><p name="a65f" id="a65f" class="graf graf--p graf-after--p">My computer is MacOS Pro,8GB memory .</p><p name="2e26" id="2e26" class="graf graf--p graf-after--p">How to solve it ?</p><blockquote name="b52d" id="b52d" class="graf graf--blockquote graf-after--p">Solution:</blockquote><p name="fe33" id="fe33" class="graf graf--p graf-after--blockquote">1,go to the MyEclipse setup folder..If you are using MacOS ,pls click the icon of MyEclipse and then click show package content</p><figure name="e142" id="e142" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 690px; max-height: 928px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 134.5%;"></div><img class="graf-image" data-image-id="1*7g9O5ijrJfO9VG7sUWCHBw.png" data-width="690" data-height="928" src="https://cdn-images-1.medium.com/max/800/1*7g9O5ijrJfO9VG7sUWCHBw.png"></div></figure><p name="378d" id="378d" class="graf graf--p graf-after--figure">2,enter the profile</p><figure name="185f" id="185f" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 222px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 31.7%;"></div><img class="graf-image" data-image-id="1*1omecQPKvlmRu7ohL9Reqg.png" data-width="1028" data-height="326" src="https://cdn-images-1.medium.com/max/800/1*1omecQPKvlmRu7ohL9Reqg.png"></div></figure><p name="3d37" id="3d37" class="graf graf--p graf-after--figure">3,choose the “eclipse.ini”file and edit to change the parameters</p><ul class="postList"><li name="af18" id="af18" class="graf graf--li graf-after--p"><code class="markup--code markup--li-code">-Xms512m -Xmx3000m (Hoping your developer box has &gt;4GB of memory)</code></li></ul><p name="659f" id="659f" class="graf graf--p graf-after--li">4,Add below parameters</p><ul class="postList"><li name="ddc2" id="ddc2" class="graf graf--li graf-after--p"><code class="markup--code markup--li-code">-XX:PermSize=256m -XX:MaxPermSize=512m</code></li><li name="65fd" id="65fd" class="graf graf--li graf-after--li">Finally save it .</li><li name="53b9" id="53b9" class="graf graf--li graf-after--li graf--trailing">All is done,congrats to you ,you win!!Say goodbye to the warning!</li></ul></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/intellij" class="p-tag">Intellij</a>, <a href="https://medium.com/tag/myeclipse" class="p-tag">Myeclipse</a>, <a href="https://medium.com/tag/java" class="p-tag">Java</a>, <a href="https://medium.com/tag/spring" class="p-tag">Spring</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/d7bd99b7f215"><time class="dt-published" datetime="2017-10-18T04:57:42.278Z">October 18, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/how-to-solve-the-issue-of-memory-using-myeclipse-d7bd99b7f215" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

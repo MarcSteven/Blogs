@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Block in ios</title><meta name="description" content="As an iOS engineer ,you should know the block ."><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Block in ios</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+As an iOS engineer ,you should know the block .
+</section>
+<section data-field="body" class="e-content">
+<section name="3bd2" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="a86e" id="a86e" class="graf graf--p graf--leading">Block in ios</p><p name="e06f" id="e06f" class="graf graf--p graf-after--p">As an iOS engineer ,you should know the block .</p><blockquote name="8fbc" id="8fbc" class="graf graf--blockquote graf-after--p"><strong class="markup--strong markup--blockquote-strong">What’s the Block?</strong></blockquote><blockquote name="540b" id="540b" class="graf graf--blockquote graf-after--blockquote">Block objects are a C-level syntactic and runtime feature. They are similar to standard C functions, but in addition to executable code they may also contain variable bindings to automatic (stack) or managed (heap) memory. A block can therefore maintain a set of state (data) that it can use to impact behavior when executed.</blockquote><p name="555a" id="555a" class="graf graf--p graf-after--blockquote">Usage:</p><p name="faf2" id="faf2" class="graf graf--p graf-after--p">1,compose function expressions that can be passed to API.</p><p name="6f00" id="6f00" class="graf graf--p graf-after--p">2,optionally stored</p><p name="048d" id="048d" class="graf graf--p graf-after--p">3, used by multiple threads</p><blockquote name="2c2d" id="2c2d" class="graf graf--blockquote graf-after--p"><strong class="markup--strong markup--blockquote-strong">What’s the retain cycle ?</strong></blockquote><blockquote name="ccca" id="ccca" class="graf graf--blockquote graf-after--blockquote"><strong class="markup--strong markup--blockquote-strong">Retain Cycle is the condition When 2 objects keep a reference to each other and are retained, it creates a retain cycle since both objects try to retain each other, making it impossible to release.</strong></blockquote><blockquote name="fb6e" id="fb6e" class="graf graf--blockquote graf-after--blockquote"><strong class="markup--strong markup--blockquote-strong">Here The “Grandparent” retains the “parent” and “parent” retains the “child” where as “child” retains the “parent”.. Here a retain cycle is established between parent and child. After releasing the Grandparent both the parent and child become orphaned but the retain count of parent will not be zero as it is being retained by the child and hence causes a memory management issue.</strong></blockquote><p name="c822" id="c822" class="graf graf--p graf-after--blockquote">Solution to avoid retain cycle</p><p name="ec23" id="ec23" class="graf graf--p graf-after--p">Two rules to avoid it</p><p name="52e5" id="52e5" class="graf graf--p graf-after--p">1) Use weak pointer to parent , i.e a child should be using weak reference to parent, which is not retained.</p><p name="31bb" id="31bb" class="graf graf--p graf-after--p">2) Use “close” methods to break retain cycles.</p><p name="4f17" id="4f17" class="graf graf--p graf-after--p">If you wanna understand it completely,there is a great blog to avoid it .<a href="http://www.cocoawithlove.com/2009/07/rules-to-avoid-retain-cycles.html" data-href="http://www.cocoawithlove.com/2009/07/rules-to-avoid-retain-cycles.html" class="markup--anchor markup--p-anchor" rel="nofollow noopener" target="_blank">http://www.cocoawithlove.com/2009/07/rules-to-avoid-retain-cycles.html</a></p><h4 name="6662" id="6662" class="graf graf--h4 graf-after--p">Block lifeCycle and Retain cycle</h4><p name="893e" id="893e" class="graf graf--p graf-after--h4">1,use <strong class="markup--strong markup--p-strong">self</strong>,for instance</p><pre name="be92" id="be92" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">void (^handleRequestBlock)(NSURLSessionDataTask*, id) = ^(NSURLSessionDataTask *task, id responseObject)<br>{<br>    self.response = [strongSelf extractResponseData:responseObject forRequestType:requestType];<br>    [weakSelf postSuccessNotification:self.response];<br>};</code></pre><p name="b246" id="b246" class="graf graf--p graf-after--pre">The handleRequest block retain self.if self has one property that own the block,that will cause retain cycle .The block will keep self retained until you release the block.So if you release the block after calling the block(set the block to nill to release it),the retain cycle will disappear.</p><p name="f2d9" id="f2d9" class="graf graf--p graf-after--p">Note:most implementations never release it as perhaps we need it afterwards,so the retain cycle is existing all the time.</p><p name="23c3" id="23c3" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Use </strong><code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">weak</strong></code><strong class="markup--strong markup--p-strong"> </strong><code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">self</strong></code></p><pre name="3986" id="3986" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">__weak typeof(self)weakSelf = self;<br>NSLog(@&quot;%p&quot;, &amp;weakSelf) ;<br>void (^handleRequestBlock)(NSURLSessionDataTask*, id) = ^(NSURLSessionDataTask *task, id responseObject)<br>{<br>    NSLog(@&quot;%p&quot;, &amp;weakSelf) ;<br>    weakSelf-&gt;_response = [strongSelf extractResponseData:responseObject forRequestType:requestType];<br>    [weakSelf postSuccessNotification:weakSelf-&gt;_response];<br>};</code></pre><p name="524b" id="524b" class="graf graf--p graf-after--pre">the block will not retain self and if the instance of self is deallocated, <code class="markup--code markup--p-code">weakSelf</code> is nil.</p><p name="1a2c" id="1a2c" class="graf graf--p graf-after--p">More about this example: I add two lines of log to show that : the address of variable <code class="markup--code markup--p-code">weakSelf</code> out of the block scope and inside the block scope are different. Because weakSelf is a stack local and <code class="markup--code markup--p-code">__weak</code> variable, so block capture it with a variable that has same value of <code class="markup--code markup--p-code">weakSelf</code> but not send retain message to the instance it indicates, <code class="markup--code markup--p-code">weakSelf</code> here is another variable with different address.</p><p name="3ca6" id="3ca6" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Third: retain </strong><code class="markup--code markup--p-code"><strong class="markup--strong markup--p-strong">self</strong></code><strong class="markup--strong markup--p-strong"> only when it is needed.</strong></p><pre name="1ab1" id="1ab1" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">__weak typeof(self)weakSelf = self;<br>void (^handleRequestBlock)(NSURLSessionDataTask*, id) = ^(NSURLSessionDataTask *task, id responseObject)<br>{<br>    __strong typeof(weakSelf)strongSelf = weakSelf;</code></pre><pre name="f92c" id="f92c" class="graf graf--pre graf-after--pre"><code class="markup--code markup--pre-code">    if (strongSelf) {<br>        strongSelf-&gt;_response = [strongSelf extractResponseData:responseObject forRequestType:requestType];<br>        [strongSelf postSuccessNotification:strongSelf-&gt;_response];<br>    }<br>};</code></pre><p name="86d5" id="86d5" class="graf graf--p graf-after--pre">There is a disadvantage on the second way: If self is not deallocated when the block is executing the first line of code, after executing this line of code , the instance of self is deallocated (because we didn’t retain it, it may be sent release method on other thread and it will be deallocated), at the second line of code , <code class="markup--code markup--p-code">weakSelf</code> is nil, so something bad will happen, it depends on the logic of your code.</p><p name="ef35" id="ef35" class="graf graf--p graf-after--p">So the third way solved that, it only retain self when the block is executing and release self at the end of the block (release means decrease retain count by 1).</p><p name="2d9c" id="2d9c" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Declare the block variable.(</strong>Block variable hold reference to the block)</p><pre name="7e96" id="7e96" class="graf graf--pre graf-after--p">void (^blockReturningVoidWithVoidArgument)(void);</pre><pre name="780d" id="780d" class="graf graf--pre graf-after--pre">int (^blockReturningIntWithIntAndCharArguments)(int, char);</pre><pre name="77eb" id="77eb" class="graf graf--pre graf-after--pre">void (^arrayOfTenBlocksReturningVoidWithIntArgument[10])(int);</pre><p name="02f4" id="02f4" class="graf graf--p graf-after--pre graf--trailing"><strong class="markup--strong markup--p-strong">Global Block</strong>(At a file ,you can use Block as the global literal</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/ios" class="p-tag">iOS</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/f8a84ec52013"><time class="dt-published" datetime="2017-08-19T12:24:01.239Z">August 19, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/block-in-ios-f8a84ec52013" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

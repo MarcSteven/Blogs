@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>stackView嵌套</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">stackView嵌套</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="5b30" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="aa0f" id="aa0f" class="graf graf--p graf--leading">stackView十分强大，因此采用嵌套的方式可以做很多复杂的布局，这的确听起来不可思议，但是确实是真的。</p><h4 name="2f03" id="2f03" class="graf graf--h4 graf-after--p">Distribution</h4><figure name="4b42" id="4b42" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*nXE_l_vDfLFp4hXIMTaB3Q.png" alt="屏幕快照 2017-07-30 下午3.22.51" src="https://cdn-images-1.medium.com/max/800/1*nXE_l_vDfLFp4hXIMTaB3Q.png"></div></figure><h4 name="9a19" id="9a19" class="graf graf--h4 graf-after--figure">fill</h4><p name="68bf" id="68bf" class="graf graf--p graf-after--h4">描述了沿着一个stackView的Axis去安排元素<br> 默认值为fill</p><figure name="1626" id="1626" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*oQcc-bt2I7Tr7f8GwbBU_w.png" alt="屏幕快照 2017-07-30 下午3.08.31" src="https://cdn-images-1.medium.com/max/800/1*oQcc-bt2I7Tr7f8GwbBU_w.png"></div></figure><p name="bcf5" id="bcf5" class="graf graf--p graf-after--figure">这将使用视图本身content的size，但是它们grow或者缩减则依赖于content hugging 优先级或者compression resistance 优先级，如果在优先级中，有一个同样的等级，这个stack View<br> 重新指定第一边的大小（在排好的子视图数组内）</p><h4 name="8f53" id="8f53" class="graf graf--h4 graf-after--p">fill equality</h4><figure name="273b" id="273b" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*BP3s-wgLTxpBwqLpCt_8VA.png" alt="屏幕快照 2017-07-30 下午3.13.29" src="https://cdn-images-1.medium.com/max/800/1*BP3s-wgLTxpBwqLpCt_8VA.png"></div></figure><h3 name="72ec" id="72ec" class="graf graf--h3 graf-after--figure">== Fill equality</h3><p name="93d3" id="93d3" class="graf graf--p graf-after--h3">它是仅有的一个不适用子视图本身content size，它仅仅使得它们沿着这个stack view的axis同样的size</p><h4 name="0cf8" id="0cf8" class="graf graf--h4 graf-after--p">fill proportionally</h4><figure name="237c" id="237c" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*79umllm8yFNAqqoAa5mQ2A.png" alt="屏幕快照 2017-07-30 下午3.18.51" src="https://cdn-images-1.medium.com/max/800/1*79umllm8yFNAqqoAa5mQ2A.png"></div></figure><p name="c26b" id="c26b" class="graf graf--p graf-after--figure">fill proportionally 以本身content size开始，但是然后以比例的方式去增长或者压缩子视图到它们的本身size。</p><h4 name="e20e" id="e20e" class="graf graf--h4 graf-after--p">equal spacing</h4><figure name="934a" id="934a" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*0md2ZGYZqbS2eX5VtdM3cQ.png" alt="屏幕快照 2017-07-30 下午3.29.45" src="https://cdn-images-1.medium.com/max/800/1*0md2ZGYZqbS2eX5VtdM3cQ.png"></div></figure><p name="7c5d" id="7c5d" class="graf graf--p graf-after--figure"><br> equal space 以本身content size开始，如果在stack view内哪里有一个额外的空间，它在视图之间均等地进行切割<br> 如果stackView比需要的小，它在视图之间使用spacing属性去保持最小的间隔。但是然后缩小视图中的一个-使用comression resistance。再者，使用排好的子视图去打破平局</p><h4 name="13a5" id="13a5" class="graf graf--h4 graf-after--p">equal centering</h4><figure name="23da" id="23da" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*FcxDunoO2UI1-OQaSRMQiQ.png" alt="屏幕快照 2017-07-30 下午3.35.33" src="https://cdn-images-1.medium.com/max/800/1*FcxDunoO2UI1-OQaSRMQiQ.png"></div></figure><pre name="c0c2" id="c0c2" class="graf graf--pre graf-after--figure"><code class="markup--code markup--pre-code">equal center 和equal space是相似的，但是替代了在视图之间的space是相等的。它使得从中心到中心的距离是相等的。</code></pre><h4 name="7529" id="7529" class="graf graf--h4 graf-after--pre">对齐</h4><figure name="27f9" id="27f9" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*tF9X_EhLSaIVr2SHCU-w4g.png" alt="屏幕快照 2017-07-30 下午3.41.05" src="https://cdn-images-1.medium.com/max/800/1*tF9X_EhLSaIVr2SHCU-w4g.png"></div></figure><p name="c1cc" id="c1cc" class="graf graf--p graf-after--figure"><br> 使用alignment属性，你配置然如何直立地放置视图到axis。因此，对于垂直的，你可以对齐到视图的leading，center。trailing边缘。<br> 在这些场景中的每个，如果可能，它将使用本身的宽度去决定size。<br> 对于一个水平的stackView，你能对齐top，bottom，center的边缘，它将使用本身的高度去决定size。<br> 默认值是fill。<br> 在垂直线的方向上，将会重新指定每个视图的大小到axis，为了填充这个stack view全尺寸。<em class="markup--em markup--p-em">然后仅仅对于水平对齐，你能通过它们的first baseLine或者last baseline去对齐视图。当然这仅仅有用-对于包含文本的视图，例如label或者textView。</em></p><h4 name="6c2e" id="6c2e" class="graf graf--h4 graf-after--p">stack view嵌套</h4><p name="675d" id="675d" class="graf graf--p graf-after--h4">什么使得stack view如此有用？<br> 这是因为许多设计有整列的视图组。</p><figure name="f23f" id="f23f" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*EQlD1F8VqlKrJQX_Hq_5qg.png" alt="屏幕快照 2017-07-30 下午3.55.45" src="https://cdn-images-1.medium.com/max/800/1*EQlD1F8VqlKrJQX_Hq_5qg.png"></div></figure><p name="378b" id="378b" class="graf graf--p graf-after--figure graf--trailing"><br> 当然，并不是屏幕上的每个视图都将有同样的对齐。这就是它的另外的一个特写- nesting<br> 在彼此之间嵌套stack view的方式，你可以创建整列的组，然后用彼此来排列出这些groups。这种类型的布局是十分容易去创建（相比较手动创建约束而言），这是一个尝试去创建这种类型的布局，但是如果没有stackViews，它将十分复杂。</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/stackview-镶嵌" class="p-tag">Stackview 镶嵌</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/75746b408a95"><time class="dt-published" datetime="2017-07-30T08:52:33.028Z">July 30, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/stackview%E5%B5%8C%E5%A5%97-75746b408a95" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

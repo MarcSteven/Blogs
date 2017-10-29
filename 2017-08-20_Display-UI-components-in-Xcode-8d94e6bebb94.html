@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Display UI components in Xcode</title><meta name="description" content="UI is the part of Application.There are three ways to construct your interface"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Display UI components in Xcode</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+UI is the part of Application.There are three ways to construct your interface
+</section>
+<section data-field="body" class="e-content">
+<section name="703e" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="296e" id="296e" class="graf graf--h3 graf--leading graf--title">Display UI components in Xcode</h3><p name="7b87" id="7b87" class="graf graf--p graf-after--h3">UI is the part of Application.There are three ways to construct your interface</p><p name="db61" id="db61" class="graf graf--p graf-after--p">1,storyboard</p><p name="cba1" id="cba1" class="graf graf--p graf-after--p">2,xib</p><p name="e9ab" id="e9ab" class="graf graf--p graf-after--p">3,code</p><p name="3c77" id="3c77" class="graf graf--p graf-after--p">I don’t wanna discuss it which one you should choose….There is no answer as you have your favorite .Choose the way you like.There are more blogs about the discussion of the tops.</p><p name="202f" id="202f" class="graf graf--p graf-after--p">iOS user interfaces- storyboard vs nibs vs custom code</p><div name="c090" id="c090" class="graf graf--mixtapeEmbed graf-after--p"><a href="https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code" data-href="https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code"><strong class="markup--strong markup--mixtapeEmbed-strong">iOS User Interfaces: Storyboards vs. NIBs vs. Custom Code</strong><br><em class="markup--em markup--mixtapeEmbed-em">What&#39;s the best way to design a UI in iOS: using Storyboards, NIBs, or code? A top iOS developer shares his thoughts in…</em>www.toptal.com</a><a href="https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="dd42fec11c378e4f476cc27e491f4992" data-thumbnail-img-id="0*cs0JJTUGKaUW1A6D." style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/0*cs0JJTUGKaUW1A6D.);"></a></div><p name="5f0e" id="5f0e" class="graf graf--p graf-after--mixtapeEmbed">storyboard -best practise</p><div name="4810" id="4810" class="graf graf--mixtapeEmbed graf-after--p"><a href="https://medium.com/ios-os-x-development/xcode-a-better-way-to-deal-with-storyboards-8b6a8b504c06" data-href="https://medium.com/ios-os-x-development/xcode-a-better-way-to-deal-with-storyboards-8b6a8b504c06" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://medium.com/ios-os-x-development/xcode-a-better-way-to-deal-with-storyboards-8b6a8b504c06"><strong class="markup--strong markup--mixtapeEmbed-strong">Xcode: A Better Way to Deal with Storyboards</strong><br><em class="markup--em markup--mixtapeEmbed-em">Tips and tricks to enjoy the Interface Builder</em>medium.com</a><a href="https://medium.com/ios-os-x-development/xcode-a-better-way-to-deal-with-storyboards-8b6a8b504c06" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="abb44a718bb6abaa831982e434ee3480" data-thumbnail-img-id="1*fMnF6nAbL2ebDZoy4442jA.png" style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/1*fMnF6nAbL2ebDZoy4442jA.png);"></a></div><p name="786b" id="786b" class="graf graf--p graf-after--mixtapeEmbed">1,storyboard tutorial</p><p name="9294" id="9294" class="graf graf--p graf-after--p">storyboard tutorial one</p><div name="f381" id="f381" class="graf graf--mixtapeEmbed graf-after--p"><a href="https://www.raywenderlich.com/113388/storyboards-tutorial-in-ios-9-part-1" data-href="https://www.raywenderlich.com/113388/storyboards-tutorial-in-ios-9-part-1" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://www.raywenderlich.com/113388/storyboards-tutorial-in-ios-9-part-1"><strong class="markup--strong markup--mixtapeEmbed-strong">Storyboards Tutorial in iOS 9: Part 1</strong><br><em class="markup--em markup--mixtapeEmbed-em">Note: Updated for Xcode 7.3, iOS 9.3, and Swift 2.2 on 04-01-2016 Original post by Tutorial Team member Matthijs…</em>www.raywenderlich.com</a><a href="https://www.raywenderlich.com/113388/storyboards-tutorial-in-ios-9-part-1" class="js-mixtapeImage mixtapeImage u-ignoreBlock" data-media-id="c33f3aa227eeca28d13f9ce60fd6de97" data-thumbnail-img-id="0*OwUnc2tUQButBHcI." style="background-image: url(https://cdn-images-1.medium.com/fit/c/160/160/0*OwUnc2tUQButBHcI.);"></a></div><p name="25f5" id="25f5" class="graf graf--p graf-after--mixtapeEmbed">storyboard tutorial two</p><p name="6f1d" id="6f1d" class="graf graf--p graf-after--p"><a href="https://www.raywenderlich.com/113394/storyboards-tutorial-in-ios-9-part-2" data-href="https://www.raywenderlich.com/113394/storyboards-tutorial-in-ios-9-part-2" class="markup--anchor markup--p-anchor" rel="nofollow noopener" target="_blank">https://www.raywenderlich.com/113394/storyboards-tutorial-in-ios-9-part-2</a></p><p name="fa0e" id="fa0e" class="graf graf--p graf-after--p">But till now I like to construct ui via code as that’s my style.If you constuct UI Via code ,if you never run your device or simulator ,you cannot see the effect of interface.But Xcode offers us a great tool to do it .</p><p name="cfc0" id="cfc0" class="graf graf--p graf--hasDropCapModel graf--hasDropCap graf-after--p"><span class="graf-dropCap">T</span><strong class="markup--strong markup--p-strong">hat’s Xcode playground .</strong></p><p name="9e06" id="9e06" class="graf graf--p graf-after--p">Xcode playground has a great build-in feature named live preview.</p><p name="b95d" id="b95d" class="graf graf--p graf-after--p">Firstly,you must import the file</p><blockquote name="0167" id="0167" class="graf graf--blockquote graf-after--p">import PlaygroundSupport</blockquote><p name="fd85" id="fd85" class="graf graf--p graf-after--blockquote">Secondly you need a containerView as one canvas to display your view</p><pre name="a02b" id="a02b" class="graf graf--pre graf-after--p">let view = UIView(frame: CGRect(x: 128, y: 128, width: 120, height: 120))</pre><pre name="6643" id="6643" class="graf graf--pre graf-after--pre">view.backgroundColor = UIColor.purple</pre><pre name="efe7" id="efe7" class="graf graf--pre graf-after--pre">UIView.animation(durtion:3) {</pre><pre name="98ec" id="98ec" class="graf graf--pre graf-after--pre">view.alpha = 0.0</pre><pre name="ae1d" id="ae1d" class="graf graf--pre graf-after--pre">}</pre><pre name="a7c9" id="a7c9" class="graf graf--pre graf-after--pre">let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 520, height: 520))</pre><pre name="3fc4" id="3fc4" class="graf graf--pre graf-after--pre">containerView.backgroundColor = UIColor.white</pre><pre name="6e18" id="6e18" class="graf graf--pre graf-after--pre">PlaygroundPage.current.liveView = containerView</pre><pre name="6d83" id="6d83" class="graf graf--pre graf-after--pre">containerView.addSubview(view)</pre><pre name="cb4e" id="cb4e" class="graf graf--pre graf-after--pre">extension UIView {</pre><pre name="d144" id="d144" class="graf graf--pre graf-after--pre">func pulse(duration:TimeInterval = 0.3) {</pre><pre name="1bde" id="1bde" class="graf graf--pre graf-after--pre">UIView.animate(withDuration: duration, animations: {</pre><pre name="359d" id="359d" class="graf graf--pre graf-after--pre">})</pre><pre name="3f72" id="3f72" class="graf graf--pre graf-after--pre">}</pre><pre name="660b" id="660b" class="graf graf--pre graf-after--pre graf--trailing">}</pre></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/ios" class="p-tag">iOS</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/8d94e6bebb94"><time class="dt-published" datetime="2017-08-20T03:11:35.499Z">August 20, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/display-ui-components-in-xcode-8d94e6bebb94" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

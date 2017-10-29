@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>RubyGem 的介绍</title><meta name="description" content="RubyGem软件可以很容易地允许我们在我们的系统上去下载，安装并且使用ruby软件包。这个软件包被称之为”Gem 包含了一组ruby的应用或者库。"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">RubyGem 的介绍</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+RubyGem软件可以很容易地允许我们在我们的系统上去下载，安装并且使用ruby软件包。这个软件包被称之为”Gem 包含了一组ruby的应用或者库。
+</section>
+<section data-field="body" class="e-content">
+<section name="51fb" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="6e20" id="6e20" class="graf graf--h3 graf--leading graf--title">RubyGem 的介绍</h3><p name="b47e" id="b47e" class="graf graf--p graf-after--h3">RubyGem软件可以很容易地允许我们在我们的系统上去下载，安装并且使用ruby软件包。这个软件包被称之为”Gem 包含了一组ruby的应用或者库。</p><p name="b54c" id="b54c" class="graf graf--p graf-after--p">Gem能在ruby应用中用于扩展或者修改功能。通常而言它们被用来分发重用的功能（被和其他ruby使用者去在它们的应用和库内）。一些gems提供了命令行工具去帮助自建任务和提升我们的工作。</p><p name="c36d" id="c36d" class="graf graf--p graf-after--p">gem命令运行你和rubyGems交互。</p><p name="a29f" id="a29f" class="graf graf--p graf-after--p">Ruby1.9和新的版本是自带RubyGems 但是你可能需要升级-防止bug或者新的特性。</p><p name="c3cd" id="c3cd" class="graf graf--p graf--hasDropCapModel graf--hasDropCap graf-after--p"><span class="graf-dropCap">G</span>em的结构</p><p name="bc96" id="bc96" class="graf graf--p graf-after--p">每个Gem都有一个名字，版本和平台。如果你打开终端输入如下的命令</p><p name="4bdf" id="4bdf" class="graf graf--p graf-after--p">gem help platform</p><p name="5b65" id="5b65" class="graf graf--p graf-after--p">将会为你呈现如下图所示</p><figure name="dc56" id="dc56" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 700px; max-height: 626px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 89.5%;"></div><img class="graf-image" data-image-id="1*iJ-1jQ4kV5rBlV0ndYyjwA.png" data-width="1312" data-height="1174" src="https://cdn-images-1.medium.com/max/800/1*iJ-1jQ4kV5rBlV0ndYyjwA.png"></div></figure><p name="b60a" id="b60a" class="graf graf--p graf-after--figure">例如 rake gem 有一个版本0.8.7自从2009年以来，rake的平台是ruby，则意味着它可以工作在任意运行ruby的平台。平台是基于CPU架构，操作系统类型，有时候也包含了系统的版本，例如x86_mingw32，rake gem是一个很伟大的工具，下载量直到今天已经上千万了。</p><blockquote name="e481" id="e481" class="graf graf--blockquote graf-after--p">gems的组成</blockquote><p name="0c70" id="0c70" class="graf graf--p graf-after--blockquote">1，代码-包含了测试和支持的工具</p><p name="b77e" id="b77e" class="graf graf--p graf-after--p">2，文本</p><p name="dd60" id="dd60" class="graf graf--p graf-after--p">3，gemspec</p><p name="de76" id="de76" class="graf graf--p graf-after--p">每个gem都有标准的组织结构</p><figure name="6b7d" id="6b7d" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked" style="max-width: 652px; max-height: 508px;"><div class="aspectRatioPlaceholder-fill" style="padding-bottom: 77.9%;"></div><img class="graf-image" data-image-id="1*_1vs0pbL-lxupDOCLb8sSw.png" data-width="652" data-height="508" src="https://cdn-images-1.medium.com/max/800/1*_1vs0pbL-lxupDOCLb8sSw.png"></div></figure><blockquote name="9a5e" id="9a5e" class="graf graf--blockquote graf-after--figure">lib包含了对于gem的代码</blockquote><blockquote name="7af1" id="7af1" class="graf graf--blockquote graf-after--blockquote">test或者spec目录则包含了测试，依赖于开发者使用的测试框架等</blockquote><blockquote name="0c21" id="0c21" class="graf graf--blockquote graf-after--blockquote">一个gem通常有一个Rakefile，rake程序常常用于自动测试，生成代码和执行其他任务。</blockquote><p name="bd23" id="bd23" class="graf graf--p graf-after--blockquote">这个gem也包含了一个执行文件在bin目录下，当gem被安装的情况下会加载进入到用户的路径中。</p><p name="557e" id="557e" class="graf graf--p graf-after--p">文本经常被引入在readme中，和内联函数，当你安装了一个gem的时候，则文档被自动生成。许多gem实用Rdoc，但是有的则实用YARD。</p><p name="ee58" id="ee58" class="graf graf--p graf-after--p graf--trailing">gemspec则包含了gem的信息，gem的文件，测试信息，平台，版本号甚至于作者的姓名邮件等等。</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/rubygems" class="p-tag">Rubygems</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/33dca867bf95"><time class="dt-published" datetime="2017-09-19T13:26:09.895Z">September 19, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/rubygem-%E7%9A%84%E4%BB%8B%E7%BB%8D-33dca867bf95" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

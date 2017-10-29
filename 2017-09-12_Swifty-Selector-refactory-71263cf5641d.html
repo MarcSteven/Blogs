@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Swifty Selector refactory</title><meta name="description" content="In iOS,we always use the Selector sugar as below:"><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Swifty Selector refactory</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+In iOS,we always use the Selector sugar as below:
+</section>
+<section data-field="body" class="e-content">
+<section name="dd11" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="6f46" id="6f46" class="graf graf--h3 graf--leading graf--title">Swifty Selector refactory</h3><p name="50b5" id="50b5" class="graf graf--p graf-after--h3 graf--trailing">In iOS,we always use the Selector sugar as below:</p></div></div></section><section name="0da0" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><pre name="5d75" id="5d75" class="graf graf--pre graf--leading">let button = UIButton(type: .system)</pre><pre name="0cf8" id="0cf8" class="graf graf--pre graf-after--pre">button.addTarget(self, action: <strong class="markup--strong markup--pre-strong">Selector(“buttonTapped:”)</strong>, for: .touchUpInside)</pre><pre name="017d" id="017d" class="graf graf--pre graf-after--pre">...</pre><pre name="daa7" id="daa7" class="graf graf--pre graf-after--pre">func buttonTapped(sender: UIButton) { }<br><br></pre><p name="7f93" id="7f93" class="graf graf--p graf-after--pre">When there are more viewControllers,it looks so ugly…..</p><p name="4d84" id="4d84" class="graf graf--p graf-after--p">We can do it as below:</p><pre name="d1c8" id="d1c8" class="graf graf--pre graf-after--p">fileprivate struct Action {</pre><pre name="2d65" id="2d65" class="graf graf--pre graf-after--pre">static let buttonTapped = <br>        <strong class="markup--strong markup--pre-strong">#selector(ViewController.buttonTapped(_:))<br></strong>static let keyboardWillShowNotification = #selector(ViewController.keyboardWillShowNotification(_:))    static let barButtonItemTapped = #selector(ViewController.barButtonItemTapped(_:))    static let segmentedControlValueChanged = #selector(ViewController.segmentedControlValueChanged(_:))</pre><pre name="5d1c" id="5d1c" class="graf graf--pre graf-after--pre">}</pre><pre name="f51c" id="f51c" class="graf graf--pre graf-after--pre">...</pre><pre name="dc6f" id="dc6f" class="graf graf--pre graf-after--pre">button.addTarget(self, action: <strong class="markup--strong markup--pre-strong">Action.buttonTapped</strong>,       <br>    for: .touchUpInside)</pre><p name="338d" id="338d" class="graf graf--p graf-after--pre">Enough,but not engough great …</p><pre name="3d47" id="3d47" class="graf graf--pre graf-after--p">fileprivate <strong class="markup--strong markup--pre-strong">extension Selector</strong> {</pre><pre name="4316" id="4316" class="graf graf--pre graf-after--pre">static let buttonTapped = <br>        #selector(ViewController.buttonTapped(_:))</pre><pre name="de5b" id="de5b" class="graf graf--pre graf-after--pre">}<br>//called it via this way <br>button.addTarget(self, action:.buttonTapped,for:.touchUpInside)</pre><p name="c8fe" id="c8fe" class="graf graf--p graf-after--pre graf--trailing">Cool,we can do it more great,glad to make the code clean.</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/swift" class="p-tag">Swift</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/71263cf5641d"><time class="dt-published" datetime="2017-09-12T07:10:23.977Z">September 12, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/swifty-selector-refactory-71263cf5641d" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

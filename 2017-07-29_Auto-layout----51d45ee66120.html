@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Auto layout 基础</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Auto layout 基础</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="ea10" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="4232" id="4232" class="graf graf--p graf--leading">当你创建一个App的时候你希望布局所有元素在所有的设备上。因此，如果你用iPhone SE，你计算X,y ,Width 和高度给每个视图，因此自动布局 = positon + Size。当你想支持横屏的时候，你需要增加一些代码去检查横屏，并且计算不同的值给这个功能。当然你想它运行在多个设备上，例如iPhone7 ，iPhone 7 plus。你也检测在不同设备运行的场景，这有大量的工作，但是你仍然需要增加一些代码去适配iPad，iPad pro。并且ipad有 split 屏幕功能，因此你需要处理1/3，1/2,2/3屏幕功能，我们仍然没有增加label。需要更改size去适配不同的语言，或者让用户选择字体size，如果你将要写代码去支持以上的种种，在你得到app的功能之前你将要写数百行的代码，或者你可以使用auto layout</p><h4 name="9cee" id="9cee" class="graf graf--h4 graf-after--p">自动布局 tools -autoresizing mask</h4><p name="c83c" id="c83c" class="graf graf--p graf-after--h4">最早期苹果介绍的帮助创建简洁布局被称之为 autoresizing masks，这些十分有限，但是在一些场景下是十分有用的</p><h4 name="ad3f" id="ad3f" class="graf graf--h4 graf-after--p">stack views</h4><figure name="1483" id="1483" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*vFpcnJZgL9S1R_9N4i_anQ.png" alt="屏幕快照 2017-07-29 下午8.11.11" src="https://cdn-images-1.medium.com/max/800/1*vFpcnJZgL9S1R_9N4i_anQ.png"></div></figure><p name="27e3" id="27e3" class="graf graf--p graf-after--figure">使用简单，但是功能强大，让你很快创建成熟的布局</p><h4 name="1f4b" id="1f4b" class="graf graf--h4 graf-after--p">constraints</h4><figure name="3643" id="3643" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder"><img class="graf-image" data-image-id="1*jDYO-XNA8CJuqdPibfDBLQ.png" alt="屏幕快照 2017-07-29 下午8.14.31" src="https://cdn-images-1.medium.com/max/800/1*jDYO-XNA8CJuqdPibfDBLQ.png"></div></figure><p name="e5db" id="e5db" class="graf graf--p graf-after--figure graf--trailing">构建约束去描述给自动布局系统，去给每个设备和场景去计算你所有视图的position value</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/basics" class="p-tag">Basic</a>, <a href="https://medium.com/tag/autolayout" class="p-tag">Autolayout</a>, <a href="https://medium.com/tag/ios" class="p-tag">iOS</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/51d45ee66120"><time class="dt-published" datetime="2017-07-29T12:21:19.149Z">July 29, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/auto-layout-%E5%9F%BA%E7%A1%80-51d45ee66120" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>

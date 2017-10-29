@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Swift high performance -optimization checklist</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Swift high performance -optimization checklist</h1>
+</header>
+<section data-field="body" class="e-content">
+<section name="251f" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p name="58e7" id="58e7" class="graf graf--p graf--leading">Why swift ???<br> Because swift has more features -it can extend our application and then make our app safer.For instance Generic,Protocol,optional ,Error handle and so on…..<br> How to write high performance code in swift ?<br> Now give you a check list to do .</p><h4 name="9206" id="9206" class="graf graf--h4 graf-after--p">1 Enable the Release mode (Swift compiler does much code optimization and improves performance in the release mode.To enable the release mode go to ‘Product Scheme\EdotScjeme\Run,select Release in the build configuration settings</h4><h4 name="b9ad" id="b9ad" class="graf graf--h4 graf-after--h4">2 disable safety checks:</h4><h4 name="a055" id="a055" class="graf graf--h4 graf-after--h4">3 enable the fast ,while module optimization level</h4><p name="a938" id="a938" class="graf graf--p graf-after--h4">By Default,the swift compiler does optimization only to one file at time.It does it as though in sandbox environment for every file,The optimization of one file has no effect on the other files.Whole Module Optimization enables optimization for all the source files in the module at once.All the source files are evaluated and optimized together.It’s very useful as we ofter declare a type in one file and use it in another.One of the optimizations that whole Module Optimization does is searching for declarations with the internal type that are not overridden anywhere and adding the final declaration optimization for them.</p><p name="35f3" id="35f3" class="graf graf--p graf-after--p graf--trailing">To enable Whole Module Optimization ,select Optimization level for the swift compiler in building setting and select the Fast ,Who Module optimization [-O -whole-module-optimization] option for release mode .<br> There are two types of optimization level settings available in Xcode <br> 1,Apple LLVM-code generation<br> 2,Swift compiler — Code generation</p></div></div></section>
+</section>
+<footer><p class="p-tags">Tagged in <a href="https://medium.com/tag/check-list" class="p-tag">Check List</a>, <a href="https://medium.com/tag/swift" class="p-tag">Swift</a></p><p>By <a href="https://medium.com/@MarcStevenCoder" class="p-author h-card">Marc Steven🍎Coder</a> on <a href="https://medium.com/p/20f222377189"><time class="dt-published" datetime="2017-08-16T14:10:39.994Z">August 16, 2017</time></a>.</p><p><a href="https://medium.com/@MarcStevenCoder/swift-high-performance-optimization-checklist-20f222377189" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on October 29, 2017.</p></footer></article>
+
+</body></html>
