@@ -48,13 +48,13 @@ Use delegation to have a master viewController to do all
 ###3,MasterNavigationViewController configures every vc and is its delegate
 
 ## what odes this fix?
-###1,individual viewControllers don't control flow/presentation
-###2,individual viewController don't need to know about their parents
-###3 ,individual viewController don't create other non-child viewControllers.
+* 1,individual viewControllers don't control flow/presentation
+* 2,individual viewController don't need to know about their parents
+* 3 ,individual viewController don't create other non-child viewControllers.
 ## what isnot so great?
-###1,doing all our magic in viewController
-###2,code duplication and or implicit dependencies between delegates
-###3, generally lots of boilerplate,everything has a navigation delegate!
+* 1,doing all our magic in viewController
+* 2,code duplication and or implicit dependencies between delegates
+* 3, generally lots of boilerplate,everything has a navigation delegate!
 Note:MasterNavigationViewController is still a viewController
 1,As the app grows ,this top level viewController will likely house other logic control logic.
 2,Still tied to all the viewController lifetime magic of UIKit .
@@ -63,15 +63,17 @@ So much boilerplate
 ##1,Every VC that can navigate must now have a delegate
 ##2,Boilerplate grows as a function of how much navigation is possible 
 ##solution v2:Navigator
-###What's so great about the Navigator?
-####1,A standalone object
-####2,Not tied to viewController life cycle or responsibilites
-####3,we can use navigator protocols to not have to repeat boilerplate
-####4,.....And to group functionality
+### What's so great about the Navigator?
+* 1,A standalone object
+* 2,Not tied to viewController life cycle or responsibilites
+* 3,we can use navigator protocols to not have to repeat boilerplate
+* 4,.....And to group functionality
 ### how does it work?
-####1,Navigator is the base protocol
-####2,all navigator protocols conform to Navigator
-####3,Navigator protocols are grouped by functionality ,not per ViewController
+* 1,Navigator is the base protocol
+* 2,all navigator protocols conform to Navigator
+* 3,Navigator protocols are grouped by functionality ,not per ViewController
+
+
 
 
 
