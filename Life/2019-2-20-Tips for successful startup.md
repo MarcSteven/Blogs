@@ -19,8 +19,10 @@ Startup means all is new ,so letting it born is not easy ,based on the experienc
 This is the idea for successful startup ,only my view ,so if you agree ,you can follow.
 
 # Useful link about the successful startup
-1,[14 startup tips for small business pro](https://www.forbes.com/sites/allbusiness/2017/12/17/14-startup-tips-from-small-business-pros/)
+
+
 2,[twenty tips for startup success](https://www.forbes.com/sites/maryjuetten/2018/05/03/twenty-tips-for-startup-success/)
+
 3,[business success](https://www.businessknowhow.com/startup/business-success.htm)
 
 # Useful video for startup
