@@ -21,9 +21,9 @@ This is the idea for successful startup ,only my view ,so if you agree ,you can 
 # Useful link about the successful startup
 
 
-2,[twenty tips for startup success](https://www.forbes.com/sites/maryjuetten/2018/05/03/twenty-tips-for-startup-success/)
+1,[twenty tips for startup success](https://www.forbes.com/sites/maryjuetten/2018/05/03/twenty-tips-for-startup-success/)
 
-3,[business success](https://www.businessknowhow.com/startup/business-success.htm)
+2,[business success](https://www.businessknowhow.com/startup/business-success.htm)
 
 # Useful video for startup
 [how to start a startup](https://www.youtube.com/watch?v=CBYhVcO4WgI)
