@@ -5,5 +5,7 @@ The blogs about the software development , it includes mobile development not on
 * Back-end development technology stack :Rails
 * Front-end development technology stack:mainly Angular +RxJS
 * Mobile development: iOS + andorid
-* life:Includes ideas from life 
+* Life:Includes ideas from life ,all the stories about me here 
+# Why I recorded here 
+Just rember my growth and then share my stories with more people ,hope it can bring people more fresh idea to improve yourself.
 
