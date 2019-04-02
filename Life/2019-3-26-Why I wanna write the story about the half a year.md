@@ -1,4 +1,8 @@
 # Why I wanna write the story about the half a year
+
+ - [Author:@Marc Steven](https://twitter.com/marcstevencoder)
+ ---
+ 
 ![屏幕快照 2019-03-25 11.58.18](media/15536465513033/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-03-25%2011.58.18.png)
 
 It's half a year ,how time flies!I cannot forget the period in my lifetime, just because I will remember the important lesson.
