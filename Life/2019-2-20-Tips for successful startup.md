@@ -18,6 +18,16 @@ Startup means all is new ,so letting it born is not easy ,based on the experienc
 * 11,In a word who can use the product ,who can be the first customer?But based on the feedback from market you must adjust the product in time ,or the startup will be over in a short time.
 This is the idea for successful startup ,only my view ,so if you agree ,you can follow.
 
+# How to choose the right co-founder
+
+* 1, you must own same dream about the product
+* 2, Your skill is not similar.
+* 3,love to try his/her best to accomplish the product even though met any difficulties
+* 4, agree to give you feeeback timely about the project.
+* 5,Strong skill to learn new technology fast
+
+
+
 # Useful link about the successful startup
 
 
