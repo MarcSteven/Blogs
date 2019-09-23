@@ -70,3 +70,5 @@ I ever played an important role in the team -Team leader .Helped enterprise to 
 So I am ready to continue my career.If you hired me ,I will try my best to make the product better. Your trust is my power to move forward.Thank for your reading.
   Everyone has their previous experience ,it's the road to be mature ,if the previous time was not good ,improve it and then you can do it better.Perhaps in your heart I am not the best one ,but I never pause to make me outstanding .
 
+
+ [2019-9-20] -paused to eat medicine (I rechecked my body and then the doctor told me it's time to pause to eat medicine for TB.
