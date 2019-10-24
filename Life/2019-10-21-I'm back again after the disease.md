@@ -25,7 +25,15 @@ Don’t waste the experiences when you are going through something. Try to learn
 
 Now I am available now. I am finding a new chance to challenge myself.If you know some good chances, please let me know. Appreciate your help and retweet. If the cakes are iOS/Rails/Django, please let me know.
 
-I am skilled in the filed of mobile development and web development. I owned eight more years experiences in the field of software engineer.
+I am skilled in the filed of mobile development and web development. I owned eight more years experiences in the field of software engineer.I ever applied the experiences into the mobile development to help workmates to improve the work flow(Applied Appuim tech into the automate test). I upgraded the software architecture to let team make the value largely -pause to do duplicated task per day. I ever worked as the lead of techlogoy to design the back-end software architecture(SOA) and guided the team of design to improve the design flow and user experiences.
+
+In life there are lots of challenges, but I am sure I am ready to start a chapter to help company to level up their products. For the previous experience I had no choice to choose, but this time I have choice to do something.
+
+Why wrote this blog here, there are two main reasons as below:
+
+* 1, aviod the doubt from HR because my resume has a empty period within one year, so HR perhaps have more doubts about it
+Is he experienced in the field of mobile development and software engineer?HR: But why his career has a empty peroid? I don't explain more about it all the time, so hope it can explain clearly about the case.
+* 2, record the life about the big case in my life - It proves nothing cannot  be beaten if you are strong enough.
 
 ##My tech stack:
 
@@ -36,3 +44,9 @@ I am skilled in the filed of mobile development and web development. I owned eig
 * API design
 * Version control:Git/SVN
 * CI:Travis/Jekins
+
+Thank you for reading and hope to have the opportunity to sit down with you and chat.
+Have a great day!
+
+-----------------------Marc Steven in SZ-----------------------
+---------------------Oct 22nd,2019 AM 11:00--------------------
