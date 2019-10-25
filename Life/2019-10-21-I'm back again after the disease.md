@@ -6,7 +6,7 @@ There are lots of words in my heart, but now I decided to write the blog to cele
 
 First of all , let me give you a short introduction about myself. If you always read my blogs, you will know who I am absolutely.
 
-My name is Marc Zhao, I am from China, a programmer desiring to change the world, I was born in a small village.
+My name is Marc Zhao, I am from China, a programmer desiring to change the world.
 
 The life is unknown and risky, the time is shorter than I think. Within long time I cannot understand why all the unfortunate cases occurred to me. But now I understand it absolutely, that’s only lessons made me stronger and more mature.
 I barely lost all except my life. But the luckiest part is that I am still alive.Perhaps that’s the biggest gift the god offered.
