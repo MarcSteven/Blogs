@@ -72,3 +72,4 @@ So I am ready to continue my career.If you hired me ,I will try my best to make
 
 
  [2019-9-20] -paused to eat medicine (I rechecked my body and then the doctor told me it's time to pause to eat medicine for TB.
+ [2020-1-6] - the whole treatment was over, thank for my parents and sisters, thank you ,Doc Wang. Thank you so much, my friends and relatives, you never give me up, always encouraged me to move forward.
